@@ -1,49 +1,42 @@
-import { RefObject, useMemo } from "react"
-import { BoxGeometry, DoubleSide, Group, NearestFilter, TextureLoader } from "three"
-import { useLoader } from "@react-three/fiber"
+import { RefObject } from "react"
+import { DoubleSide, Group } from "three"
 import { CAPE_MODEL_DATA } from "@/constants/cape-model-data"
 import { setCapeUVs } from "@/utils/set-uvs"
+import { Box } from "@/components/Box"
+import { Material } from "@/components/Material"
 
 interface Props {
   ref?: RefObject<Group | null>
 }
 
 export const CapeModel: React.FC<Props> = ({ ref }) => {
-  const textureUrl = "images/capes/cape.png"
-  const texture = useLoader(TextureLoader, textureUrl)
-
-  texture.magFilter = NearestFilter
-  texture.minFilter = NearestFilter
-  texture.generateMipmaps = false
-
   const {
-    box: { geometry, uvs },
+    box: { size, uvs },
     position,
     pivotPosition,
     rotation,
+    textureName,
   } = CAPE_MODEL_DATA
 
-  const boxGeometry = useMemo(() => {
-    const box = new BoxGeometry(...geometry)
-    setCapeUVs(box, uvs)
-    box.computeVertexNormals()
-    return box
-  }, [geometry, uvs])
-
   return (
-    <group ref={ref} position={pivotPosition}>
-      <mesh
-        geometry={boxGeometry}
-        rotation={rotation}
+    <group
+      ref={ref}
+      position={pivotPosition}
+    >
+      <Box
+        size={size}
+        uvs={uvs}
+        setUvs={setCapeUVs}
         position={position}
+        rotation={rotation}
       >
-        <meshStandardMaterial
-          map={texture}
+        <Material
+          textureName={textureName}
           side={DoubleSide}
           transparent
           alphaTest={1e-5}
         />
-      </mesh>
-    </group>
+      </Box>
+    </group >
   )
 }

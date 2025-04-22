@@ -2,7 +2,7 @@ import type { BodyPartName } from "@/types"
 
 type Region = { x: number; y: number; width: number; height: number }
 
-type OuterLayerMap = { [key in BodyPartName]: Region[] }
+type OuterLayerMap = Record<BodyPartName, Region[]>
 
 export const outerLayerRegions: { normal: OuterLayerMap; slim: OuterLayerMap } = {
   normal: {
@@ -46,4 +46,3 @@ export const outerLayerRegions: { normal: OuterLayerMap; slim: OuterLayerMap } =
     ],
   },
 }
-

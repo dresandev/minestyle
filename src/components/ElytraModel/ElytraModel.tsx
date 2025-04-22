@@ -1,25 +1,38 @@
-import { NearestFilter, TextureLoader } from "three"
-import { useLoader } from "@react-three/fiber"
+import { DoubleSide } from "three"
 import { ELYTRA_MODEL_DATA } from "@/constants/elytra-model-data"
-import { ElytraPart } from "@/components/ElytraPart"
+import { setCapeUVs } from "@/utils/set-uvs"
+import { Box } from "@/components/Box"
+import { Material } from "@/components/Material"
 
 export const ElytraModel = () => {
-  const textureUrl = "images/capes/cape.png"
-  const texture = useLoader(TextureLoader, textureUrl)
-
-  texture.magFilter = NearestFilter
-  texture.minFilter = NearestFilter
-  texture.generateMipmaps = false
-
   return (
-    <>
-      {ELYTRA_MODEL_DATA.map((data, index) => (
-        <ElytraPart
-          key={index}
-          data={data}
-          texture={texture}
-        />
-      ))}
-    </>
+    <group position={[0, -10.5, -5.9]}>
+      {ELYTRA_MODEL_DATA.map((data) => {
+        const { name,
+          box: { size, uvs },
+          position,
+          rotation,
+          scale
+        } = data
+
+        return (
+          <Box
+            key={name}
+            size={size}
+            uvs={uvs}
+            setUvs={setCapeUVs}
+            position={position}
+            rotation={rotation}
+            scale={scale}
+          >
+            <Material
+              textureName="cape"
+              side={DoubleSide}
+              transparent
+              alphaTest={1e-5} />
+          </Box>
+        )
+      })}
+    </group>
   )
 }

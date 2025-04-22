@@ -41,7 +41,6 @@ export const setBodyBoxUVs = (geometry: BoxGeometry, boxUvs: number[]) => {
   setUVs(geometry, [...boxUvs, 64, 64])
 }
 
-
 export const setCapeUVs = (geometry: BoxGeometry, boxUvs: number[]) => {
   setUVs(geometry, [...boxUvs, 64, 32])
 }

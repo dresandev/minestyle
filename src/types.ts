@@ -6,13 +6,57 @@ export type Geometry = [width: number, height: number, depth: number]
 export type Position = [x: number, y: number, z: number]
 export type Rotation = [x: number, y: number, z: number]
 export type Scale = [x: number, y: number, z: number]
-export type BodyPartName = "head" | "body" | "rightArm" | "leftArm" | "rightLeg" | "leftLeg"
 export type ElytraPartName = "leftWing" | "rightWing"
 export type Model3DRefs<K extends string> = Record<K, RefObject<Group>>
 export type Model3DRef = RefObject<Group | null>
-export type AnimationFn<K, T = null> = (t: number, refs: K, props: T) => void
+export type AnimationFn<K, T = null> = (t: number, refs: K, props?: T) => void
 
 export interface BoxData {
-  geometry: Geometry
+  size: Geometry
   uvs: number[]
+}
+
+export type BodyPartName =
+  "head" |
+  "body" |
+  "rightArm" |
+  "leftArm" |
+  "rightLeg" |
+  "leftLeg"
+
+export type ArmorPartName =
+  "helmet" |
+  "chestplate" |
+  "innerChestplate" |
+  "rightShoulder" |
+  "leftShoulder" |
+  "rightLeggin" |
+  "leftLeggin" |
+  "rightBoot" |
+  "leftBoot"
+
+export type TextureName =
+  "helmet" |
+  "chestplate" |
+  "innerChestplate" |
+  "leggins" |
+  "boots" |
+  "cape"
+
+export interface BodyPartData {
+  name: BodyPartName
+  innerBoxData: BoxData
+  slimInnerBoxData?: BoxData
+  outerBoxData: BoxData
+  slimOuterBoxData?: BoxData
+  position?: Position
+  outerBoxPolygonOffset?: boolean
+  outerBoxDepthWrite?: boolean
+}
+
+export interface ArmorPartData {
+  name: ArmorPartName
+  boxData: BoxData
+  polygonOffset?: boolean
+  textureName: TextureName
 }

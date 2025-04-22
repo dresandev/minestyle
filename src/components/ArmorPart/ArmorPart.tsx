@@ -1,37 +1,33 @@
-import { useMemo } from "react"
-import {
-  BoxGeometry,
-  DoubleSide,
-  Texture
-} from "three"
+import { Suspense } from "react"
+import { DoubleSide } from "three"
+import type { ArmorPartData } from "@/types"
 import { setBodyBoxUVs } from "@/utils/set-uvs"
-import { ArmorPartData } from "@/constants/armor-model-data"
+import { Box } from "@/components/Box"
+import { Material } from "@/components/Material"
 
 interface Props {
-  texture: Texture
   data: ArmorPartData
 }
 
-export function ArmorPart({ texture, data }: Props) {
-  const { box: { geometry, uvs }, position, polygonOffset, } = data
-
-  const boxGeometry = useMemo(() => {
-    const box = new BoxGeometry(...geometry)
-    setBodyBoxUVs(box, uvs)
-    return box
-  }, [geometry, uvs])
+export const ArmorPart: React.FC<Props> = ({ data }) => {
+  const { boxData, textureName, polygonOffset } = data
 
   return (
-    <mesh geometry={boxGeometry} position={position}>
-      <meshStandardMaterial
-        map={texture}
-        transparent={true}
-        side={DoubleSide}
-        alphaTest={1e-5}
-        polygonOffset={polygonOffset}
-        polygonOffsetFactor={1.0}
-        polygonOffsetUnits={1.0}
-      />
-    </mesh>
+    <Box
+      size={boxData.size}
+      uvs={boxData.uvs}
+      setUvs={setBodyBoxUVs}
+    >
+      <Suspense fallback={<meshBasicMaterial visible={false} />}>
+        <Material
+          textureName={textureName}
+          transparent={true}
+          alphaTest={1e-5}
+          side={DoubleSide}
+          polygonOffset={polygonOffset}
+          color="#C74EBD"
+        />
+      </Suspense>
+    </Box>
   )
 }

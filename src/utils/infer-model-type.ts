@@ -1,18 +1,15 @@
-import { Texture } from "three"
-import type { ModelType } from "../types"
+import type { ModelType } from "@/types"
 
-const canvas = document.createElement("canvas")
-const ctx = canvas.getContext("2d", { willReadFrequently: true })!
+export function inferModelType(image: HTMLImageElement): ModelType {
+  const canvas = document.createElement("canvas")
+  const ctx = canvas.getContext("2d", { willReadFrequently: true })!
 
-export function inferModelType(texture: Texture): ModelType {
   if (!ctx) throw new Error("No se pudo obtener el contexto 2D del canvas.")
 
-  const img = texture.image
+  canvas.width = image.width
+  canvas.height = image.height
 
-  canvas.width = img.width
-  canvas.height = img.height
-
-  ctx.drawImage(img, 0, 0)
+  ctx.drawImage(image, 0, 0)
 
   const scale = canvas.width / 64.0
   const context = canvas.getContext("2d", { willReadFrequently: true }) as CanvasRenderingContext2D

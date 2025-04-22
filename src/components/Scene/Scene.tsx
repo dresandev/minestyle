@@ -1,5 +1,4 @@
-import { PerspectiveCamera, PresentationControls } from "@react-three/drei"
-import { Canvas } from "@react-three/fiber"
+import { OrbitControls, PerspectiveCamera } from "@react-three/drei"
 import { EffectComposer, SMAA } from "@react-three/postprocessing"
 import { SMAAPreset } from "postprocessing"
 
@@ -9,17 +8,10 @@ interface Props {
 
 export const Scene: React.FC<Props> = ({ children }) => {
   return (
-    <Canvas
-      style={{
-        inlineSize: 700,
-        blockSize: 700,
-        touchAction: "none",
-        imageRendering: "pixelated",
-      }}
-    >
+    <>
       <PerspectiveCamera
         makeDefault
-        position={[0, 0, 40]}
+        position={[0, 0, 35]}
         fov={90}
         zoom={1.6}
         near={0.1}
@@ -28,18 +20,15 @@ export const Scene: React.FC<Props> = ({ children }) => {
         <ambientLight intensity={1} />
         <directionalLight intensity={2} position={[10, 0, 8]} />
       </PerspectiveCamera>
-
-      <PresentationControls
-        polar={[-Math.PI / 2, Math.PI / 2]}
-        damping={0.01}
-        speed={1.5}
-      >
-        {children}
-      </PresentationControls>
-
+      {children}
+      <OrbitControls
+        enableDamping={false}
+        enableZoom={false}
+        rotateSpeed={1}
+      />
       <EffectComposer multisampling={0}>
         <SMAA preset={SMAAPreset.ULTRA} />
       </EffectComposer>
-    </Canvas>
+    </>
   )
 }

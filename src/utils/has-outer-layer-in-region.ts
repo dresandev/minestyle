@@ -1,14 +1,13 @@
-import { Texture } from "three"
-
 export type Region = { x: number; y: number; width: number; height: number }
 
-const canvas = document.createElement("canvas")
-const ctx = canvas.getContext("2d", { willReadFrequently: true })
+export const hasOuterLayerInRegion = (
+  image: HTMLImageElement,
+  region: Region[],
+): boolean => {
+  const canvas = document.createElement("canvas")
+  const ctx = canvas.getContext("2d", { willReadFrequently: true })
 
-export const hasOuterLayerInRegion = (texture: Texture, region: Region[]): boolean => {
   if (!ctx) throw new Error("No se pudo obtener el contexto 2D del canvas.")
-
-  const image = texture.image
 
   if (!ctx || !image) return false
 
