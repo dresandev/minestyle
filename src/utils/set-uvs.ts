@@ -37,7 +37,7 @@ export const setUVs = (geometry: BoxGeometry, uvInfo: number[]) => {
   uvAttr.needsUpdate = true
 }
 
-export const setBodyBoxUVs = (geometry: BoxGeometry, boxUvs: number[]) => {
+export const setBodyUVs = (geometry: BoxGeometry, boxUvs: number[]) => {
   setUVs(geometry, [...boxUvs, 64, 64])
 }
 

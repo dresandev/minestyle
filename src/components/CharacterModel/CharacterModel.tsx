@@ -9,11 +9,16 @@ interface Props {
   partRefs: Record<BodyPartName, RefObject<Group>>
 }
 
-export const BodyModel: React.FC<Props> = ({ partRefs }) => {
+export const CharacterModel: React.FC<Props> = ({ partRefs }) => {
   return (
     <>
       {characterModelData.map((data) => {
-        const { pivotPosition, position, bodyPart, armorPart } = data
+        const {
+          pivotPosition,
+          position,
+          bodyPart,
+          armorPart,
+        } = data
 
         return (
           <group
@@ -25,11 +30,9 @@ export const BodyModel: React.FC<Props> = ({ partRefs }) => {
               <Suspense>
                 <BodyPart data={bodyPart} />
               </Suspense>
-              {/* {armorPart.map((data) => (
-                <Suspense key={data.name}>
-                  <ArmorPart data={data} />
-                </Suspense>
-              ))} */}
+              {armorPart.map((data) => (
+                <ArmorPart key={data.name} data={data} />
+              ))}
             </group>
           </group >
         )

@@ -1,18 +1,18 @@
-export type Region = { x: number; y: number; width: number; height: number }
+import { getCachedCanvas } from "@/utils/cached-canvas"
+
+export interface Region {
+  x: number
+  y: number
+  width: number
+  height: number
+}
 
 export const hasOuterLayerInRegion = (
   image: HTMLImageElement,
   region: Region[],
 ): boolean => {
-  const canvas = document.createElement("canvas")
-  const ctx = canvas.getContext("2d", { willReadFrequently: true })
+  const ctx = getCachedCanvas(image.width, image.height)
 
-  if (!ctx) throw new Error("No se pudo obtener el contexto 2D del canvas.")
-
-  if (!ctx || !image) return false
-
-  canvas.width = image.width
-  canvas.height = image.height
   ctx.drawImage(image, 0, 0)
 
   for (const { x, y, width, height } of region) {

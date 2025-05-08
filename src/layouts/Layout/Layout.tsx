@@ -1,5 +1,5 @@
-import { GodRays } from "@/components/GodRays"
 import { Toaster } from "sonner"
+import { GodRays } from "@/components/GodRays"
 
 interface Props {
   children: React.ReactNode

@@ -9,25 +9,27 @@ interface SkinData {
 }
 
 interface SkinDataState {
-  skinData: SkinData
+  data: SkinData
   setSkinData: (skinData: SkinData) => void
 }
 
 export const useSkinDataStore = create<SkinDataState>()(set => ({
-  skinData: {
+  data: {
     skin: DEFAULT_SKIN,
     isSlim: false,
     hasOuterLayer: {
       head: true,
       body: false,
-      rightArm: true,
-      leftArm: true,
-      rightLeg: true,
-      leftLeg: true
+      rightArm: false,
+      leftArm: false,
+      rightLeg: false,
+      leftLeg: false
     }
   },
   setSkinData: (skinData) => set((state) => ({
-    ...state,
-    skinData
+    data: {
+      ...state.data,
+      ...skinData
+    }
   }))
 }))

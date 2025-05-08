@@ -1,33 +1,26 @@
-import { Suspense } from "react"
-import { DoubleSide } from "three"
 import type { ArmorPartData } from "@/types"
-import { setBodyBoxUVs } from "@/utils/set-uvs"
+import { setBodyUVs } from "@/utils/set-uvs"
+import { useArmorDataStore } from "@/store/use-armor-data-store"
 import { Box } from "@/components/Box"
-import { Material } from "@/components/Material"
+import { ArmorMaterialRenderer } from "./ArmorMaterialRenderer"
 
 interface Props {
   data: ArmorPartData
 }
 
 export const ArmorPart: React.FC<Props> = ({ data }) => {
-  const { boxData, textureName, polygonOffset } = data
+  const { boxData, partName } = data
+
+  const isVisible = useArmorDataStore(state => state.data[partName].isVisible)
 
   return (
     <Box
+      isVisible={isVisible}
       size={boxData.size}
       uvs={boxData.uvs}
-      setUvs={setBodyBoxUVs}
+      setUvs={setBodyUVs}
     >
-      <Suspense fallback={<meshBasicMaterial visible={false} />}>
-        <Material
-          textureName={textureName}
-          transparent={true}
-          alphaTest={1e-5}
-          side={DoubleSide}
-          polygonOffset={polygonOffset}
-          color="#C74EBD"
-        />
-      </Suspense>
+      <ArmorMaterialRenderer partName={partName} />
     </Box>
   )
 }

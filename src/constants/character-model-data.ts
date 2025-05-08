@@ -32,7 +32,7 @@ export const characterModelData: CharacterPartData[] = [
           size: [9.5, 9.5, 9.5],
           uvs: [0, 0, 8, 8, 8],
         },
-        textureName: "helmet",
+        partName: "helmet",
       }
     ],
     position: [0, 4, 0],
@@ -41,7 +41,7 @@ export const characterModelData: CharacterPartData[] = [
     bodyPart: {
       name: "body",
       innerBoxData: {
-        size: [8.1, 12.1, 4.1],
+        size: [8.05, 12.05, 4.05],
         uvs: [16, 16, 8, 12, 4],
       },
       outerBoxData: {
@@ -53,10 +53,10 @@ export const characterModelData: CharacterPartData[] = [
       {
         name: "chestplate",
         boxData: {
-          size: [9.5, 13.5, 5.5],
+          size: [9.4, 13.5, 5.5],
           uvs: [16, 16, 8, 12, 4],
         },
-        textureName: "chestplate"
+        partName: "chestplate"
       },
       {
         name: "innerChestplate",
@@ -64,8 +64,7 @@ export const characterModelData: CharacterPartData[] = [
           size: [8.8, 13, 5],
           uvs: [16, 16, 8, 12, 4],
         },
-        polygonOffset: true,
-        textureName: "innerChestplate"
+        partName: "innerChestplate"
       },
     ],
     position: [0, -6, 0],
@@ -99,8 +98,7 @@ export const characterModelData: CharacterPartData[] = [
           size: [5.5, 13.5, 5.7],
           uvs: [40, 16, 4, 12, 4],
         },
-        polygonOffset: true,
-        textureName: "chestplate",
+        partName: "chestplate",
       }
     ],
     position: [-2, -4, 0],
@@ -135,8 +133,7 @@ export const characterModelData: CharacterPartData[] = [
           size: [5.5, 13.5, 5.7],
           uvs: [32, 48, 4, 12, 4],
         },
-        polygonOffset: true,
-        textureName: "chestplate",
+        partName: "chestplate",
       }
     ],
     position: [2, -4, 0],
@@ -163,7 +160,7 @@ export const characterModelData: CharacterPartData[] = [
           size: [4.6, 12.6, 4.6],
           uvs: [0, 16, 4, 12, 4],
         },
-        textureName: "leggins",
+        partName: "leggins",
       },
       {
         name: "rightBoot",
@@ -171,7 +168,7 @@ export const characterModelData: CharacterPartData[] = [
           size: [5.5, 13.5, 5.5],
           uvs: [0, 16, 4, 12, 4],
         },
-        textureName: "boots",
+        partName: "boots",
       },
     ],
     position: [-2, -6, 0],
@@ -198,7 +195,7 @@ export const characterModelData: CharacterPartData[] = [
           size: [4.6, 12.6, 4.6],
           uvs: [16, 48, 4, 12, 4],
         },
-        textureName: "leggins",
+        partName: "leggins",
       },
       {
         name: "leftBoot",
@@ -206,7 +203,7 @@ export const characterModelData: CharacterPartData[] = [
           size: [5.5, 13.5, 5.5],
           uvs: [16, 48, 4, 12, 4],
         },
-        textureName: "boots",
+        partName: "boots",
       },
     ],
     position: [2, -6, 0],

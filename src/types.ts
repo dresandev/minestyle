@@ -1,4 +1,4 @@
-import { RefObject } from "react"
+import type { RefObject } from "react"
 import { Group } from "three"
 
 export type ModelType = "default" | "slim"
@@ -17,31 +17,49 @@ export interface BoxData {
 }
 
 export type BodyPartName =
-  "head" |
-  "body" |
-  "rightArm" |
-  "leftArm" |
-  "rightLeg" |
-  "leftLeg"
+  | "head"
+  | "body"
+  | "rightArm"
+  | "leftArm"
+  | "rightLeg"
+  | "leftLeg"
 
-export type ArmorPartName =
-  "helmet" |
-  "chestplate" |
-  "innerChestplate" |
-  "rightShoulder" |
-  "leftShoulder" |
-  "rightLeggin" |
-  "leftLeggin" |
-  "rightBoot" |
-  "leftBoot"
+export type BasicArmorPartName =
+  | "helmet"
+  | "chestplate"
+  | "leggins"
+  | "boots"
 
-export type TextureName =
-  "helmet" |
-  "chestplate" |
-  "innerChestplate" |
-  "leggins" |
-  "boots" |
-  "cape"
+export type ArmorPartName = BasicArmorPartName | "innerChestplate"
+
+export type TrimName =
+  | "sentry"
+  | "bolt"
+  | "dune"
+  | "coast"
+  | "wild"
+  | "ward"
+  | "eye"
+  | "vex"
+  | "tide"
+  | "snout"
+  | "rib"
+  | "spire"
+  | "wayfinder"
+  | "shaper"
+  | "host"
+  | "silence"
+  | "raiser"
+  | "flow"
+
+export type ArmorType =
+  | "chainmail"
+  | "diamond"
+  | "gold"
+  | "iron"
+  | "leather"
+  | "netherite"
+  | "turtle-scute"
 
 export interface BodyPartData {
   name: BodyPartName
@@ -57,6 +75,5 @@ export interface BodyPartData {
 export interface ArmorPartData {
   name: ArmorPartName
   boxData: BoxData
-  polygonOffset?: boolean
-  textureName: TextureName
+  partName: ArmorPartName
 }

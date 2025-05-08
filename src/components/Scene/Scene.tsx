@@ -1,4 +1,4 @@
-import { OrbitControls, PerspectiveCamera } from "@react-three/drei"
+import { PerspectiveCamera, PresentationControls } from "@react-three/drei"
 import { EffectComposer, SMAA } from "@react-three/postprocessing"
 import { SMAAPreset } from "postprocessing"
 
@@ -20,12 +20,13 @@ export const Scene: React.FC<Props> = ({ children }) => {
         <ambientLight intensity={1} />
         <directionalLight intensity={2} position={[10, 0, 8]} />
       </PerspectiveCamera>
-      {children}
-      <OrbitControls
-        enableDamping={false}
-        enableZoom={false}
-        rotateSpeed={1}
-      />
+      <PresentationControls
+        polar={[-Math.PI / 2, Math.PI / 2]}
+        damping={0.01}
+        speed={1.5}
+      >
+        {children}
+      </PresentationControls>
       <EffectComposer multisampling={0}>
         <SMAA preset={SMAAPreset.ULTRA} />
       </EffectComposer>

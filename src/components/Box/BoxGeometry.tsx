@@ -3,6 +3,7 @@ import type { Geometry, Position, Rotation, Scale } from "@/types"
 
 interface Props {
   children: React.ReactNode
+  isVisible?: boolean
   size: Geometry
   uvs: number[]
   position?: Position
@@ -13,6 +14,7 @@ interface Props {
 
 export const Box: React.FC<Props> = ({
   children,
+  isVisible,
   size,
   uvs,
   position,
@@ -25,6 +27,7 @@ export const Box: React.FC<Props> = ({
 
   return (
     <mesh
+      visible={isVisible}
       geometry={box}
       position={position}
       rotation={rotation}

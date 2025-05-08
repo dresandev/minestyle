@@ -1,13 +1,27 @@
-import { DoubleSide } from "three"
+import { RefObject } from "react"
+import { Group } from "three"
 import { ELYTRA_MODEL_DATA } from "@/constants/elytra-model-data"
 import { setCapeUVs } from "@/utils/set-uvs"
+import { useBackEquipmentDataStore } from "@/store/use-back-equipment-data-store"
 import { Box } from "@/components/Box"
-import { Material } from "@/components/Material"
+import { ElytraMaterialRenderer } from "./ElytraMaterialRenderer"
 
-export const ElytraModel = () => {
+interface Props {
+  ref?: RefObject<Group | null>
+}
+
+export const ElytraModel: React.FC<Props> = ({ ref }) => {
+  const { wingsData, pivotPosition } = ELYTRA_MODEL_DATA
+
+  const isVisible = useBackEquipmentDataStore(state => state.elytra.isVisible)
+
   return (
-    <group position={[0, -10.5, -5.9]}>
-      {ELYTRA_MODEL_DATA.map((data) => {
+    <group
+      ref={ref}
+      visible={isVisible}
+      position={pivotPosition}
+    >
+      {wingsData.map((data) => {
         const { name,
           box: { size, uvs },
           position,
@@ -25,11 +39,7 @@ export const ElytraModel = () => {
             rotation={rotation}
             scale={scale}
           >
-            <Material
-              textureName="cape"
-              side={DoubleSide}
-              transparent
-              alphaTest={1e-5} />
+            <ElytraMaterialRenderer />
           </Box>
         )
       })}

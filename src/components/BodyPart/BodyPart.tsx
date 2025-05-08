@@ -1,8 +1,8 @@
 import { DoubleSide } from "three"
 import type { BodyPartData } from "@/types"
 import { useSkinDataStore } from "@/store/use-skin-data-store"
-import { useTextureLoader } from "@/hooks/use-texture-loader"
-import { setBodyBoxUVs } from "@/utils/set-uvs"
+import { useMCTexture } from "@/hooks/use-mc-texture"
+import { setBodyUVs } from "@/utils/set-uvs"
 import { Box } from "@/components/Box"
 
 interface Props {
@@ -10,13 +10,6 @@ interface Props {
 }
 
 export const BodyPart: React.FC<Props> = ({ data }) => {
-  const {
-    skin,
-    isSlim,
-    hasOuterLayer,
-  } = useSkinDataStore(state => state.skinData)
-  const texture = useTextureLoader(skin)
-
   const {
     name,
     position,
@@ -27,6 +20,13 @@ export const BodyPart: React.FC<Props> = ({ data }) => {
     outerBoxPolygonOffset,
     outerBoxDepthWrite
   } = data
+
+  const {
+    skin,
+    isSlim,
+    hasOuterLayer,
+  } = useSkinDataStore(state => state.data)
+  const texture = useMCTexture(skin)
 
   const innerBox = (isSlim && slimInnerBoxData)
     ? slimInnerBoxData
@@ -40,7 +40,7 @@ export const BodyPart: React.FC<Props> = ({ data }) => {
       <Box
         size={innerBox.size}
         uvs={innerBox.uvs}
-        setUvs={setBodyBoxUVs}
+        setUvs={setBodyUVs}
       >
         <meshStandardMaterial map={texture} />
       </Box>
@@ -48,7 +48,7 @@ export const BodyPart: React.FC<Props> = ({ data }) => {
         <Box
           size={outerBox.size}
           uvs={outerBox.uvs}
-          setUvs={setBodyBoxUVs}
+          setUvs={setBodyUVs}
         >
           <meshStandardMaterial
             map={texture}
