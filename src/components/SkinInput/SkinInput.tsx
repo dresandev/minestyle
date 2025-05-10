@@ -3,6 +3,7 @@ import { toast } from "sonner"
 import { convertSkinTo1_8 } from "@/utils/convert-skin-to-1_8"
 import { getSkinData } from "@/helpers/get-skin-data"
 import { useSkinDataStore } from "@/store/use-skin-data-store"
+import { validateFile } from "./validations"
 
 export const SkinInput = () => {
   const inputRef = useRef<HTMLInputElement>(null)
@@ -12,12 +13,10 @@ export const SkinInput = () => {
     const file = event.target.files?.[0]
     if (!file) return
 
-    if (file.type !== "image/png") {
-      return toast.error("Only PNG images are allowed.")
-    }
+    const isValidFile = validateFile(file)
 
-    if (file.size > 20 * 1024) {
-      return toast.error("The file size must be 20KB or less.")
+    if (!isValidFile) {
+      return clearInput()
     }
 
     const reader = new FileReader()
@@ -52,13 +51,11 @@ export const SkinInput = () => {
           const skinData = getSkinData(finalImage)
 
           setSkinData({ skin: finalBase64, ...skinData })
-
-          if (inputRef.current) {
-            inputRef.current.value = ""
-          }
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
           toast.error(err.message || "An error occurred while loading the skin.")
+        } finally {
+          clearInput()
         }
       }
 
@@ -66,6 +63,11 @@ export const SkinInput = () => {
     }
 
     reader.readAsDataURL(file)
+  }
+
+  const clearInput = () => {
+    if (!inputRef.current) return
+    inputRef.current.value = ""
   }
 
   return (
