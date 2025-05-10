@@ -7,7 +7,6 @@ import { idleAnimation } from "@/animations"
 
 export const Models3D = () => {
   const {
-    bodyRef,
     bodyPartRefs,
     capeRef,
   } = useModelRefs()
@@ -15,10 +14,10 @@ export const Models3D = () => {
   useAnimation(idleAnimation, { bodyPartRefs, capeRef }, 2)
 
   return (
-    <group position={[0, 8, 0]}>
+    <group position={[0, 7, 0]}>
       <CharacterModel partRefs={bodyPartRefs} />
       <CapeModel ref={capeRef} />
-      {/* <ElytraModel /> */}
+      <ElytraModel />
     </group>
   )
 }

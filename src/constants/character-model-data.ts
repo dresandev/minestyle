@@ -27,7 +27,6 @@ export const characterModelData: CharacterPartData[] = [
     },
     armorPart: [
       {
-        name: "helmet",
         boxData: {
           size: [9.5, 9.5, 9.5],
           uvs: [0, 0, 8, 8, 8],
@@ -51,7 +50,6 @@ export const characterModelData: CharacterPartData[] = [
     },
     armorPart: [
       {
-        name: "chestplate",
         boxData: {
           size: [9.4, 13.5, 5.5],
           uvs: [16, 16, 8, 12, 4],
@@ -59,7 +57,6 @@ export const characterModelData: CharacterPartData[] = [
         partName: "chestplate"
       },
       {
-        name: "innerChestplate",
         boxData: {
           size: [8.8, 13, 5],
           uvs: [16, 16, 8, 12, 4],
@@ -93,7 +90,6 @@ export const characterModelData: CharacterPartData[] = [
     },
     armorPart: [
       {
-        name: "rightShoulder",
         boxData: {
           size: [5.5, 13.5, 5.7],
           uvs: [40, 16, 4, 12, 4],
@@ -128,7 +124,6 @@ export const characterModelData: CharacterPartData[] = [
     },
     armorPart: [
       {
-        name: "leftShoulder",
         boxData: {
           size: [5.5, 13.5, 5.7],
           uvs: [32, 48, 4, 12, 4],
@@ -155,7 +150,6 @@ export const characterModelData: CharacterPartData[] = [
     },
     armorPart: [
       {
-        name: "rightLeggin",
         boxData: {
           size: [4.6, 12.6, 4.6],
           uvs: [0, 16, 4, 12, 4],
@@ -163,7 +157,6 @@ export const characterModelData: CharacterPartData[] = [
         partName: "leggins",
       },
       {
-        name: "rightBoot",
         boxData: {
           size: [5.5, 13.5, 5.5],
           uvs: [0, 16, 4, 12, 4],
@@ -190,7 +183,6 @@ export const characterModelData: CharacterPartData[] = [
     },
     armorPart: [
       {
-        name: "leftLeggin",
         boxData: {
           size: [4.6, 12.6, 4.6],
           uvs: [16, 48, 4, 12, 4],
@@ -198,7 +190,6 @@ export const characterModelData: CharacterPartData[] = [
         partName: "leggins",
       },
       {
-        name: "leftBoot",
         boxData: {
           size: [5.5, 13.5, 5.5],
           uvs: [16, 48, 4, 12, 4],

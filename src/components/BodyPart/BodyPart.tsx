@@ -1,8 +1,8 @@
 import { DoubleSide } from "three"
 import type { BodyPartData } from "@/types"
 import { useSkinDataStore } from "@/store/use-skin-data-store"
-import { useMCTexture } from "@/hooks/use-mc-texture"
 import { setBodyUVs } from "@/utils/set-uvs"
+import { loadMCTexture } from "@/helpers/load-mc-texture"
 import { Box } from "@/components/Box"
 
 interface Props {
@@ -10,6 +10,12 @@ interface Props {
 }
 
 export const BodyPart: React.FC<Props> = ({ data }) => {
+  const {
+    skin,
+    isSlim,
+    hasOuterLayer,
+  } = useSkinDataStore(state => state.data)
+
   const {
     name,
     position,
@@ -21,12 +27,7 @@ export const BodyPart: React.FC<Props> = ({ data }) => {
     outerBoxDepthWrite
   } = data
 
-  const {
-    skin,
-    isSlim,
-    hasOuterLayer,
-  } = useSkinDataStore(state => state.data)
-  const texture = useMCTexture(skin)
+  const texture = loadMCTexture(skin)
 
   const innerBox = (isSlim && slimInnerBoxData)
     ? slimInnerBoxData

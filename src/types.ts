@@ -73,7 +73,6 @@ export interface BodyPartData {
 }
 
 export interface ArmorPartData {
-  name: ArmorPartName
   boxData: BoxData
   partName: ArmorPartName
 }

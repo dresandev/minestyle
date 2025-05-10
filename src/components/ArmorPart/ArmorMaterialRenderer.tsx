@@ -1,9 +1,7 @@
 import { Suspense } from "react"
 import type { ArmorPartData } from "@/types"
 import { useArmorDataStore } from "@/store/use-armor-data-store"
-import { ArmorMaterial } from "../ArmorMaterial/ArmorMaterial"
-import { Material as SimpleArmorMaterial } from "@/components/Material"
-import { DoubleSide } from "three"
+import { ArmorMaterial, SimpleArmorMaterial } from "@/components/ArmorMaterial"
 
 interface Props {
   partName: ArmorPartData["partName"]
@@ -18,7 +16,6 @@ export const ArmorMaterialRenderer: React.FC<Props> = ({ partName }) => {
   if (!armorUrl) return
 
   const hasTrim = !!(trimUrl && trimMaterialUrl)
-
   const color = isLeather ? armorColor : undefined
 
   return (
@@ -32,11 +29,8 @@ export const ArmorMaterialRenderer: React.FC<Props> = ({ partName }) => {
         />
       ) : (
         <SimpleArmorMaterial
-          textureUrl={armorUrl}
-          side={DoubleSide}
-          transparent={true}
-          alphaTest={1e-5}
-          color={color}
+          armorUrl={armorUrl}
+          armorColor={color}
         />
       )}
     </Suspense>

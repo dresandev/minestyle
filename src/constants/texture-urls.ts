@@ -1,4 +1,5 @@
-export const DEFAULT_SKIN = "images/skins/default.png"
+export const DEFAULT_SKIN = "/images/skins/default.png"
+export const DEFAULT_CAPE = "/images/capes/default.png"
 export const BASE_ARMOR_TEXTURE_URL = "/images/armors"
 export const BASE_ARMOR_TRIM_TEXTURE_URL = "/images/trims"
 

@@ -1,15 +1,16 @@
 import { useRef } from "react"
-import { useTexture } from "@react-three/drei"
+import { Cache } from "three"
 import { Canvas } from "@react-three/fiber"
+import { useTexture } from "@react-three/drei"
 import { TEXTURES } from "@/constants/texture-urls"
 import { useBeforeUnload } from "@/hooks/use-before-unload"
 import { Layout } from "@/layouts/Layout"
 import { SkinInput } from "@/components/SkinInput"
 import { Scene } from "@/components/Scene"
 import { Models3D } from "@/components/Models3D"
-import { Button } from "@/components/Button"
 
 TEXTURES.forEach(useTexture.preload)
+Cache.enabled = true
 
 function HomePage() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -36,7 +37,6 @@ function HomePage() {
         </Scene>
       </Canvas>
       <SkinInput />
-      <Button />
     </Layout>
   )
 }

@@ -16,14 +16,14 @@ interface SkinDataState {
 export const useSkinDataStore = create<SkinDataState>()(set => ({
   data: {
     skin: DEFAULT_SKIN,
-    isSlim: false,
+    isSlim: true,
     hasOuterLayer: {
       head: true,
       body: false,
-      rightArm: false,
-      leftArm: false,
-      rightLeg: false,
-      leftLeg: false
+      rightArm: true,
+      leftArm: true,
+      rightLeg: true,
+      leftLeg: true
     }
   },
   setSkinData: (skinData) => set((state) => ({

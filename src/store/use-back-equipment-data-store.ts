@@ -1,4 +1,5 @@
 import { create } from "zustand"
+import { DEFAULT_CAPE } from "@/constants/texture-urls"
 
 interface BackEquipmentData {
   isVisible?: boolean
@@ -18,11 +19,11 @@ function shallowEqual(a: BackEquipmentData, b: BackEquipmentData) {
 export const useBackEquipmentDataStore = create<BackEquipmentState>()((set, get) => ({
   cape: {
     isVisible: true,
-    url: "/images/capes/common-cape.png",
+    url: DEFAULT_CAPE,
   },
   elytra: {
-    isVisible: true,
-    url: "/images/capes/common-cape.png",
+    isVisible: false,
+    url: DEFAULT_CAPE,
   },
   setBackEquipment: ({ cape, elytra }) => {
     const state = get()

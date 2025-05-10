@@ -1,4 +1,4 @@
-import { RefObject, Suspense } from "react"
+import { RefObject } from "react"
 import { Group } from "three"
 import type { BodyPartName } from "@/types"
 import { characterModelData } from "@/constants/character-model-data"
@@ -27,11 +27,9 @@ export const CharacterModel: React.FC<Props> = ({ partRefs }) => {
             position={pivotPosition}
           >
             <group position={position}>
-              <Suspense>
-                <BodyPart data={bodyPart} />
-              </Suspense>
-              {armorPart.map((data) => (
-                <ArmorPart key={data.name} data={data} />
+              <BodyPart data={bodyPart} />
+              {armorPart.map((data, index) => (
+                <ArmorPart key={index} data={data} />
               ))}
             </group>
           </group >
