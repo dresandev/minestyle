@@ -1,95 +1,74 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { CHARACTER_CONTAINER_ID } from "@/constants/dom"
+import { MinecraftCharacterCanvas } from "@/components/minecraft-character-canvas"
+import { LoadingScreen } from "@/components/LoadingScreen"
+import { PanoramaCanvas } from "@/components/panorama-canvas"
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
+import { Chestplate } from "@/components/icons/chestplate"
+import { Skin } from "@/components/icons/skin"
+import { Cape } from "@/components/icons/cape"
+import { Button } from "@/components/ui/button"
+import { Helmet } from "@/components/icons/helmet"
+import { Leggins } from "@/components/icons/leggins"
+import { Boots } from "@/components/icons/boots"
+import { ArmorSet } from "@/components/icons/armor-set"
+import styles from "./page.module.css"
+import { Trim } from "@/components/icons/trim"
+import { Material } from "@/components/icons/material"
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className={styles.page}>
+    <>
       <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+        <div
+          id={CHARACTER_CONTAINER_ID}
+          className={styles.wrapper}
+        >
+          <div className={styles.tabs}>
+            <Tabs defaultValue="armor" className={styles.tabs}>
+              <TabsList className={styles.tabList}>
+                <TabsTrigger title="Armor" value="armor">
+                  <Chestplate size={42} />
+                </TabsTrigger>
+                <TabsTrigger title="Skin" value="skin">
+                  <Skin size={55} />
+                </TabsTrigger>
+                <TabsTrigger title="Cape" value="cape">
+                  <Cape size={42} />
+                </TabsTrigger>
+              </TabsList>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+              <TabsContent value="armor">
+                <Button variant="ghost">
+                  <Helmet />
+                </Button>
+                <Button variant="ghost">
+                  <Chestplate />
+                </Button>
+                <Button variant="ghost">
+                  <Leggins />
+                </Button>
+                <Button variant="ghost">
+                  <Boots />
+                </Button>
+                <Button variant="ghost">
+                  <ArmorSet />
+                </Button>
+                <Button variant="ghost">
+                  <Trim />
+                </Button>
+                <Button variant="ghost">
+                  <Material />
+                </Button>
+              </TabsContent>
+              <TabsContent value="skin">skin</TabsContent>
+              <TabsContent value="cape">cape</TabsContent>
+            </Tabs>
+          </div>
+          <MinecraftCharacterCanvas />
         </div>
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+      <LoadingScreen />
+      <PanoramaCanvas />
+    </>
+  )
 }

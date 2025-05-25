@@ -1,0 +1,20 @@
+.wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  padding-inline: 24px;
+  background-color: var(--background-color);
+  animation: fade-out 1s forwards 3s;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

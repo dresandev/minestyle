@@ -1,0 +1,16 @@
+.wrapper {
+  block-size: 3lh;
+  display: flex;
+  flex-direction: column;
+}
+
+.quote {
+  font-size: 18px;
+  text-align: center;
+}
+
+.by {
+  margin-inline-start: auto;
+  font-size: 14px;
+  color: hsl(0 0% 65%);
+}

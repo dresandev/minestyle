@@ -1,0 +1,23 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0 24px;
+  max-inline-size: 364px;
+  inline-size: 100%;
+  padding: 12px 24px;
+  background-color: hsl(240 2% 11% / 0.95);
+  user-select: none;
+}
+
+.wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 2px solid hsl(277 12% 50% / 0.2);
+  pointer-events: none;
+}
+
+.icon {
+  image-rendering: pixelated;
+}

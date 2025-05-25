@@ -1,0 +1,15 @@
+.trigger {
+  --size: 60px;
+  inline-size: var(--size);
+  block-size: var(--size);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: hsl(0, 0%, 51%);
+  transition: color 250ms;
+}
+
+.trigger:hover,
+.trigger[data-state="active"] {
+  color: var(--text-color);
+}

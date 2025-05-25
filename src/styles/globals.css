@@ -1,0 +1,18 @@
+:root {
+  --header-block-size: 60px;
+  --padding-inline: 18px;
+  --background-color: hsl(216 16% 6%);
+  --text-color: hsl(0 0% 93%);
+  --outline-color: hsl(210 100% 66%);
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  min-block-size: 100dvh;
+}
+
+:focus-visible {
+  outline: 2px solid var(--outline-color);
+  outline-offset: 2px;
+}
