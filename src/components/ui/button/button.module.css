@@ -2,7 +2,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   border-radius: 2px;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .button.square {
@@ -24,7 +30,17 @@
   background-color: hsl(120 100% 45% / 0.2);
 }
 
-.button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+.button.outline {
+  border: 2px solid hsl(0 0% 100% / 0.15);
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px hsl(0 0 0 / 0.15);
+  transition: border-color 250ms;
+}
+
+.button.outline:hover {
+  border-color: hsl(0 0% 100% / 0.3);
+}
+
+.button.outline[data-state="open"] {
+  border-color: hsl(0 0% 100% / 0.5);
 }

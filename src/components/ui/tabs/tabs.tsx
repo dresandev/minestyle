@@ -35,7 +35,7 @@ const TabsContent = forwardRef<
 >(({ className, ...props }, ref) => (
   <Content
     ref={ref}
-    className={className}
+    className={clsx(styles.content, className)}
     {...props}
   />
 ))

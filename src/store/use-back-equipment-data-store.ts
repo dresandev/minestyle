@@ -1,50 +1,45 @@
 import { create } from "zustand"
-import { DEFAULT_CAPE } from "@/constants/texture-urls"
+import { DEFAULT_CAPE_PATH } from "@/constants/texture-paths"
 
 interface BackEquipmentData {
   isVisible?: boolean
-  url: string
+  url?: string
 }
 
-interface BackEquipmentState {
+type BackEquipmentPart = "cape" | "elytra"
+
+interface State {
   cape: BackEquipmentData
   elytra: BackEquipmentData
-  setBackEquipment: ({
-    cape,
-    elytra,
-  }: {
-    cape?: BackEquipmentData,
-    elytra?: BackEquipmentData,
-  }) => void
 }
 
-function shallowEqual(a: BackEquipmentData, b: BackEquipmentData) {
-  return a.isVisible === b.isVisible && a.url === b.url
+interface Actions {
+  setBackEquipment: (
+    data: Record<BackEquipmentPart, BackEquipmentData>
+  ) => void
 }
 
-export const useBackEquipmentDataStore = create<BackEquipmentState>()((set, get) => ({
+const INIT_STATE = {
   cape: {
     isVisible: true,
-    url: DEFAULT_CAPE,
+    url: DEFAULT_CAPE_PATH,
   },
   elytra: {
     isVisible: false,
-    url: DEFAULT_CAPE,
-  },
-  setBackEquipment: ({ cape, elytra }) => {
-    const state = get()
-    const updates: Partial<BackEquipmentState> = {}
+    url: DEFAULT_CAPE_PATH,
+  }
+}
 
-    if (cape && !shallowEqual(state.cape, cape)) {
-      updates.cape = cape
+export const useBackEquipmentDataStore = create<State & Actions>()(set => ({
+  ...INIT_STATE,
+  setBackEquipment: ({ cape, elytra }) => set((state) => ({
+    cape: {
+      ...state.cape,
+      ...cape
+    },
+    elytra: {
+      ...state.elytra,
+      ...elytra
     }
-
-    if (elytra && !shallowEqual(state.elytra, elytra)) {
-      updates.elytra = elytra
-    }
-
-    if (Object.keys(updates).length > 0) {
-      set(updates)
-    }
-  },
+  })),
 }))

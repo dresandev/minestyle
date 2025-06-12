@@ -1,6 +1,6 @@
 import { create } from "zustand"
 import type { BodyPartName } from "@/types"
-import { DEFAULT_SKIN } from "@/constants/texture-urls"
+import { DEFAULT_SKIN_PATH } from "@/constants/texture-paths"
 
 interface SkinData {
   skin: string
@@ -8,28 +8,27 @@ interface SkinData {
   hasOuterLayer: Record<BodyPartName, boolean>
 }
 
-interface SkinDataState {
-  data: SkinData
-  setSkinData: (skinData: SkinData) => void
+type State = SkinData
+
+type Actions = { setSkinData: (skinData: SkinData) => void }
+
+const INIT_STATE = {
+  skin: DEFAULT_SKIN_PATH,
+  isSlim: true,
+  hasOuterLayer: {
+    head: true,
+    body: false,
+    rightArm: true,
+    leftArm: true,
+    rightLeg: true,
+    leftLeg: true
+  }
 }
 
-export const useSkinDataStore = create<SkinDataState>()(set => ({
-  data: {
-    skin: DEFAULT_SKIN,
-    isSlim: true,
-    hasOuterLayer: {
-      head: true,
-      body: false,
-      rightArm: true,
-      leftArm: true,
-      rightLeg: true,
-      leftLeg: true
-    }
-  },
+export const useSkinDataStore = create<State & Actions>()(set => ({
+  ...INIT_STATE,
   setSkinData: (skinData) => set((state) => ({
-    data: {
-      ...state.data,
-      ...skinData
-    }
+    ...state,
+    ...skinData
   }))
 }))

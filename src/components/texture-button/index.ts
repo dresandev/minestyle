@@ -1,1 +1,1 @@
-export * from "./TextureButton"
+export * from "./texture-button"

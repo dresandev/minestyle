@@ -154,7 +154,7 @@ export const characterModelData: CharacterPartData[] = [
           size: [4.6, 12.6, 4.6],
           uvs: [0, 16, 4, 12, 4],
         },
-        partName: "leggins",
+        partName: "leggings",
       },
       {
         boxData: {
@@ -187,7 +187,7 @@ export const characterModelData: CharacterPartData[] = [
           size: [4.6, 12.6, 4.65],
           uvs: [16, 48, 4, 12, 4],
         },
-        partName: "leggins",
+        partName: "leggings",
       },
       {
         boxData: {

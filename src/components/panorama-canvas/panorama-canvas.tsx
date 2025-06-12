@@ -16,12 +16,12 @@ export const PanoramaCanvas = () => {
   const panoramaName = "simply-vanilla-spawn"
 
   const images: BoxSidesImage = [
-    `/images/panorama/${panoramaName}/${dynamicFolder}/right.webp`,
-    `/images/panorama/${panoramaName}/${dynamicFolder}/left.webp`,
-    `/images/panorama/${panoramaName}/${dynamicFolder}/top.webp`,
-    `/images/panorama/${panoramaName}/${dynamicFolder}/bottom.webp`,
-    `/images/panorama/${panoramaName}/${dynamicFolder}/front.webp`,
-    `/images/panorama/${panoramaName}/${dynamicFolder}/back.webp`,
+    `/images/panoramas/${panoramaName}/${dynamicFolder}/right.webp`,
+    `/images/panoramas/${panoramaName}/${dynamicFolder}/left.webp`,
+    `/images/panoramas/${panoramaName}/${dynamicFolder}/top.webp`,
+    `/images/panoramas/${panoramaName}/${dynamicFolder}/bottom.webp`,
+    `/images/panoramas/${panoramaName}/${dynamicFolder}/front.webp`,
+    `/images/panoramas/${panoramaName}/${dynamicFolder}/back.webp`,
   ]
 
   return (

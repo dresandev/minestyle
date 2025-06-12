@@ -2,7 +2,7 @@ import { Slot } from "@radix-ui/react-slot"
 import clsx from "clsx"
 import styles from "./button.module.css"
 
-type Variant = "primary" | "ghost"
+type Variant = "primary" | "ghost" | "outline"
 
 export interface ButtonProps extends React.ComponentProps<"button"> {
   asChild?: boolean

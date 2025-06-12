@@ -1,8 +1,8 @@
 import { useTexture } from "@react-three/drei"
-import { applyMCTextureSettings } from "@/helpers/apply-mc-texture-settings"
+import { applyMcTextureSettings } from "@/helpers/apply-mc-texture-settings"
 
-export function useMCTexture(url: string) {
+export function useMcTexture(url: string) {
   const texture = useTexture(url)
-  applyMCTextureSettings(texture)
+  applyMcTextureSettings(texture)
   return texture
 }

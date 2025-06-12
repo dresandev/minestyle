@@ -5,7 +5,7 @@ export const getCachedCanvas = (width: number, height: number): CanvasRenderingC
   if (!cachedCanvas) {
     cachedCanvas = document.createElement("canvas")
     cachedCtx = cachedCanvas.getContext("2d", { willReadFrequently: true })
-    if (!cachedCtx) throw new Error("No se pudo obtener el contexto 2D del canvas.")
+    if (!cachedCtx) throw new Error("Could not get 2D context of canvas.")
   }
 
   cachedCanvas.width = width

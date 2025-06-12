@@ -1,201 +1,113 @@
 import { create } from "zustand"
+import { immer } from "zustand/middleware/immer"
 import type { ArmorPartName, BasicArmorPartName } from "@/types"
+import { DYE_COLORS } from "@/constants/dye-colors"
 
-interface ArmorPartData {
+export interface ArmorPartData {
   isVisible?: boolean
-  armorData: {
-    isLeather: boolean
-    armorColor?: string
-    armorUrl: string
+  armor: {
+    isLeather?: boolean
+    color?: string
+    url: string
   }
-  trimData: {
-    trimUrl: string
-    trimMaterialUrl: string
+  trim: {
+    url: string
+    materialUrl: string
   }
 }
 
-type ArmorData = Record<
+export type ArmorData = Record<ArmorPartName, ArmorPartData>
+export type PartialArmorData = Record<
   ArmorPartName,
-  ArmorPartData
+  Pick<ArmorPartData, "isVisible" | "armor">
 >
-type PartialArmorData = Record<
-  ArmorPartName,
-  Pick<ArmorPartData, "isVisible" | "armorData">
->
-type PartialTrimData = Record<
+export type PartialTrimData = Record<
   BasicArmorPartName,
-  Pick<ArmorPartData, "trimData">
+  Pick<ArmorPartData, "trim">
 >
-type PartialVisibilityData = Record<
+export type PartialVisibilityData = Record<
   ArmorPartName,
   Pick<ArmorPartData, "isVisible">
 >
 
-interface ArmorDataState {
-  data: ArmorData
+export type State = ArmorData
+
+export interface Actions {
   setArmorPart: (data: Partial<PartialArmorData>) => void
   setTrimPart: (data: Partial<PartialTrimData>) => void
-  setArmorPartVisibility: (data: Partial<PartialVisibilityData>) => void
+  setArmorPartVisibility: (data: Partial<Record<ArmorPartName, boolean>>) => void
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function shallowEqual(obj1: any, obj2: any): boolean {
-  if (obj1 === obj2) return true
-  if (!obj1 || !obj2) return false
-  const keys1 = Object.keys(obj1)
-  const keys2 = Object.keys(obj2)
-  if (keys1.length !== keys2.length) return false
-  return keys1.every(key => obj1[key] === obj2[key])
+const INIT_STATE = {
+  helmet: {
+    isVisible: false,
+    armor: { isLeather: false, url: "", color: DYE_COLORS.brown },
+    trim: { url: "", materialUrl: "" },
+  },
+  chestplate: {
+    isVisible: false,
+    armor: { isLeather: false, url: "", color: DYE_COLORS.brown },
+    trim: { url: "", materialUrl: "" },
+  },
+  innerChestplate: {
+    isVisible: false,
+    armor: { isLeather: false, url: "", color: DYE_COLORS.brown },
+    trim: { url: "", materialUrl: "" },
+  },
+  leggings: {
+    isVisible: false,
+    armor: { isLeather: false, url: "", color: DYE_COLORS.brown },
+    trim: { url: "", materialUrl: "" },
+  },
+  boots: {
+    isVisible: false,
+    armor: { isLeather: false, url: "", color: DYE_COLORS.brown },
+    trim: { url: "", materialUrl: "" },
+  },
 }
 
-export const useArmorDataStore = create<ArmorDataState>()((set, get) => ({
-  data: {
-    helmet: {
-      isVisible: true,
-      armorData: {
-        isLeather: true,
-        armorUrl: "/images/armors/leather/layer-1.png",
-        armorColor: "#8932B8",
-      },
-      trimData: {
-        trimUrl: "/images/trims/eye/layer-1.png",
-        trimMaterialUrl: "/images/materials/amethyst.png"
-      },
-    },
-    chestplate: {
-      isVisible: true,
-      armorData: {
-        isLeather: true,
-        armorUrl: "/images/armors/leather/layer-1.png",
-        armorColor: "#8932B8",
-      },
-      trimData: {
-        trimUrl: "/images/trims/eye/layer-1.png",
-        trimMaterialUrl: "/images/materials/amethyst.png"
-      },
-    },
-    innerChestplate: {
-      isVisible: true,
-      armorData: {
-        isLeather: true,
-        armorUrl: "/images/armors/leather/layer-2.png",
-        armorColor: "#8932B8",
-      },
-      trimData: {
-        trimUrl: "",
-        trimMaterialUrl: ""
-      },
-    },
-    leggins: {
-      isVisible: true,
-      armorData: {
-        isLeather: true,
-        armorUrl: "/images/armors/leather/layer-2.png",
-        armorColor: "#8932B8",
-      },
-      trimData: {
-        trimUrl: "/images/trims/eye/layer-2.png",
-        trimMaterialUrl: "/images/materials/amethyst.png"
-      },
-    },
-    boots: {
-      isVisible: true,
-      armorData: {
-        isLeather: true,
-        armorUrl: "/images/armors/leather/layer-1.png",
-        armorColor: "#8932B8",
-      },
-      trimData: {
-        trimUrl: "/images/trims/eye/layer-1.png",
-        trimMaterialUrl: "/images/materials/amethyst.png"
-      },
-    },
-  },
+export const useArmorDataStore = create<State & Actions>()(
+  immer((set) => ({
+    ...INIT_STATE,
+    setArmorPart: (newParts) => {
+      set((state) => {
+        for (const partKey in newParts) {
+          const partName = partKey as ArmorPartName
+          const newData = newParts[partName]
 
-  setArmorPart: (newParts) => {
-    const current = get().data
-    let hasChanged = false
+          if (!newData) continue
 
-    const merged = Object.entries(newParts).reduce((acc, [partKey, newData]) => {
-      const part = partKey as ArmorPartName
-      const existing = current[part]
+          if (newData.isVisible) {
+            state[partName].isVisible = newData.isVisible
+          }
 
-      const mergedArmorData = {
-        ...existing.armorData,
-        ...newData?.armorData,
-      }
-
-      const shouldUpdate =
-        existing.isVisible !== newData?.isVisible ||
-        !shallowEqual(existing.armorData, mergedArmorData)
-
-      if (shouldUpdate) {
-        hasChanged = true
-        acc[part] = {
-          ...existing,
-          ...newData,
-          armorData: mergedArmorData,
+          if (newData.armor) {
+            Object.assign(state[partName].armor, newData.armor)
+          }
         }
-      }
+      })
+    },
+    setTrimPart: (newParts) => {
+      set((state) => {
+        for (const partKey in newParts) {
+          const partName = partKey as BasicArmorPartName
+          const newData = newParts[partName]
+          if (!newData?.trim) continue
 
-      return acc
-    }, {} as Partial<ArmorData>)
-
-    if (hasChanged) {
-      set({ data: { ...current, ...merged } })
-    }
-  },
-
-  setTrimPart: (newParts) => {
-    const current = get().data
-    let hasChanged = false
-
-    const merged = Object.entries(newParts).reduce((acc, [partKey, newData]) => {
-      const part = partKey as ArmorPartName
-      const existing = current[part]
-
-      const mergedTrimData = {
-        ...existing.trimData,
-        ...newData?.trimData,
-      }
-
-      if (!shallowEqual(existing.trimData, mergedTrimData)) {
-        hasChanged = true
-        acc[part] = {
-          ...existing,
-          trimData: mergedTrimData,
+          Object.assign(state[partName].trim, newData.trim)
         }
-      }
-
-      return acc
-    }, {} as Partial<ArmorData>)
-
-    if (hasChanged) {
-      set({ data: { ...current, ...merged } })
-    }
-  },
-
-  setArmorPartVisibility: (newParts) => {
-    const current = get().data
-    let hasChanged = false
-
-    const merged = Object.entries(newParts).reduce((acc, [partKey, newData]) => {
-      const part = partKey as ArmorPartName
-      const existing = current[part]
-
-      if (existing.isVisible !== newData?.isVisible) {
-        hasChanged = true
-        acc[part] = {
-          ...existing,
-          isVisible: newData?.isVisible,
+      })
+    },
+    setArmorPartVisibility: (newParts) => {
+      set((state) => {
+        for (const partKey in newParts) {
+          const partName = partKey as ArmorPartName
+          const isVisible = newParts[partName]
+          if (typeof isVisible === "boolean") {
+            state[partName].isVisible = isVisible
+          }
         }
-      }
-
-      return acc
-    }, {} as Partial<ArmorData>)
-
-    if (hasChanged) {
-      set({ data: { ...current, ...merged } })
+      })
     }
-  },
-}))
+  }))
+)

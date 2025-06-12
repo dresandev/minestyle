@@ -4,7 +4,7 @@ import {
   Texture,
 } from "three"
 
-export const applyMCTextureSettings = (texture: Texture) => {
+export const applyMcTextureSettings = (texture: Texture) => {
   texture.magFilter = NearestFilter
   texture.minFilter = NearestFilter
   texture.colorSpace = SRGBColorSpace

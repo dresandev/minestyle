@@ -1,0 +1,53 @@
+.tabs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tabList {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  inline-size: 100%;
+  border-block: 2px solid hsl(0 0% 100% / 0.2);
+  background-color: hsl(0 0% 0% / 0.3);
+}
+
+.tabsContent {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-template-rows: repeat(5, auto);
+  grid-auto-flow: column;
+  gap: 16px;
+  padding: 24px;
+}
+
+@media screen and (min-width: 768px) {
+  .tabs {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .tabList {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 8px;
+    border-block: unset;
+    border-inline-end: 1px solid hsl(0 0% 100% / 0.2);
+  }
+
+  .tabListTrigger {
+    position: relative;
+  }
+
+  .tabListTrigger:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: -1px;
+    block-size: 1px;
+    inline-size: 65%;
+    margin-inline: auto;
+    background-color: hsl(0 0% 100% / 0.2);
+  }
+}

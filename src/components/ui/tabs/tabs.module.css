@@ -1,15 +1,18 @@
 .trigger {
-  --size: 60px;
-  inline-size: var(--size);
-  block-size: var(--size);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: hsl(0, 0%, 51%);
-  transition: color 250ms;
+  opacity: 0.5;
+  transition: opacity 250ms;
+}
+
+.trigger:focus-visible {
+  outline-offset: -4px;
+  border-radius: 8px;
 }
 
 .trigger:hover,
 .trigger[data-state="active"] {
-  color: var(--text-color);
+  opacity: 1;
+}
+
+.content:focus-visible {
+  outline-offset: -4px;
 }

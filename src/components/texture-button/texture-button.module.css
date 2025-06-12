@@ -1,0 +1,11 @@
+.wrapper {
+  inline-size: min-content;
+}
+
+.label {
+  display: block;
+  padding-block-start: 4px;
+  font-size: 12px;
+  text-align: center;
+  text-wrap: stable;
+}

@@ -6,8 +6,7 @@ import type {
   Scale,
 } from "@/types"
 
-interface Props {
-  children: React.ReactNode
+interface Props extends React.PropsWithChildren {
   isVisible?: boolean
   size: Geometry
   uvs: number[]
