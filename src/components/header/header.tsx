@@ -1,5 +1,5 @@
 import { MusicButton } from "@/components/music-button"
-import { User } from "@/components/icons/user"
+import { UserIcon } from "@/components/icons/user-icon"
 import { Button } from "@/components/ui/button"
 import styles from "./header.module.css"
 
@@ -11,7 +11,7 @@ export const Header = () => {
         disabled
         square
       >
-        <User />
+        <UserIcon />
       </Button>
       <MusicButton />
     </header>

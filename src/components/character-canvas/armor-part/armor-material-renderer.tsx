@@ -9,7 +9,7 @@ interface Props {
 
 export const ArmorMaterialRenderer: React.FC<Props> = ({ partName }) => {
   const {
-    armor: { url: armorUrl, isLeather, color },
+    armor: { url: armorUrl, isLeather, dye },
     trim: { url: trimUrl, materialUrl: trimMaterialUrl },
   } = useArmorDataStore(state => state[partName])
 
@@ -17,7 +17,7 @@ export const ArmorMaterialRenderer: React.FC<Props> = ({ partName }) => {
 
   const hasTrim = !!(trimUrl && trimMaterialUrl)
   // TODO: hasTrim as store prop
-  const armorColor = isLeather ? color : undefined
+  const color = isLeather ? dye : undefined
 
   return (
     <Suspense>
@@ -26,12 +26,12 @@ export const ArmorMaterialRenderer: React.FC<Props> = ({ partName }) => {
           armorUrl={armorUrl}
           trimUrl={trimUrl}
           trimMaterialUrl={trimMaterialUrl}
-          armorColor={armorColor}
+          armorDye={color}
         />
       ) : (
         <SimpleArmorMaterial
           armorUrl={armorUrl}
-          armorColor={armorColor}
+          armorDye={color}
         />
       )}
     </Suspense>

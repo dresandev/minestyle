@@ -10,21 +10,21 @@ interface Props {
   armorUrl: string
   trimUrl: string
   trimMaterialUrl: string
-  armorColor?: string
+  armorDye?: string
 }
 
 export const ArmorMaterial: React.FC<Props> = ({
   armorUrl,
   trimUrl,
   trimMaterialUrl,
-  armorColor = "#ffffff",
+  armorDye = "#ffffff",
 }) => {
   const shaderRef = useRef<WebGLProgramParametersWithUniforms>(null)
   const armorTexture = useMcTexture(armorUrl)
   const trimTexture = useMcTexture(trimUrl)
   const trimMaterialTexture = useMcTexture(trimMaterialUrl)
 
-  const { r, g, b } = new Color(armorColor)
+  const { r, g, b } = new Color(armorDye)
 
   useEffect(() => {
     const shader = shaderRef.current
@@ -36,7 +36,7 @@ export const ArmorMaterial: React.FC<Props> = ({
     uniforms.trimTexture.value = trimTexture
     uniforms.materialTexture.value = trimMaterialTexture
     uniforms.armorTexture.value = armorTexture
-    uniforms.armorColor.value = [r, g, b]
+    uniforms.armorDye.value = [r, g, b]
   }, [armorTexture, trimTexture, trimMaterialTexture, r, g, b])
 
   const onBeforeCompile = (shader: WebGLProgramParametersWithUniforms) => {
@@ -45,7 +45,7 @@ export const ArmorMaterial: React.FC<Props> = ({
     shader.uniforms.trimTexture = { value: trimTexture }
     shader.uniforms.materialTexture = { value: trimMaterialTexture }
     shader.uniforms.armorTexture = { value: armorTexture }
-    shader.uniforms.armorColor = { value: [r, g, b] }
+    shader.uniforms.armorDye = { value: [r, g, b] }
 
     shader.vertexShader = shader.vertexShader.replace(
       "#include <common>",
@@ -65,7 +65,7 @@ export const ArmorMaterial: React.FC<Props> = ({
        uniform sampler2D trimTexture;
        uniform sampler2D materialTexture;
        uniform sampler2D armorTexture;
-       uniform vec3 armorColor;
+       uniform vec3 armorDye;
        varying vec2 vUv;`
     )
 
@@ -75,7 +75,7 @@ export const ArmorMaterial: React.FC<Props> = ({
        vec4 baseColor = texture2D(armorTexture, vUv);
        vec4 trimColor = texture2D(trimTexture, vUv);
 
-       vec3 colorizedArmorRgb = baseColor.rgb * armorColor;
+       vec3 colorizedArmorRgb = baseColor.rgb * armorDye;
 
        if (trimColor.a > 0.01) {
          float rawIndex = floor(trimColor.r * 10.0);

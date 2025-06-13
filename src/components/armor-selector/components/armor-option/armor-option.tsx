@@ -7,7 +7,7 @@ import { toPlural } from "@/helpers/to-plural"
 import { useArmorDataStore } from "@/store/use-armor-data-store"
 import { useArmorItemsStore } from "@/store/use-armor-items-store"
 import { TextureButton } from "@/components/texture-button"
-import { Cancel } from "@/components/icons/cancel"
+import { CancelIcon } from "@/components/icons/cancel-icon"
 import { OptionPopover } from "@/components/popover-option"
 import { ItemImage } from "@/components/item-image"
 import { LeatherItemImage } from "../../components/leather-item-image"
@@ -28,12 +28,12 @@ interface ExtraOption {
   onSelect: () => void
 }
 
-interface ArmorOptionProps {
+interface Props {
   label: string
   armorPart: BasicArmorPartName
   optionsData: ArmorOptionData[]
   icon: React.ReactNode
-  onSelect: (texture: ArmorOptionData) => void
+  onSelect: (data: ArmorOptionData) => void
   onRemove: () => void
   extraOption?: ExtraOption
 }
@@ -46,11 +46,11 @@ export const ArmorOption = ({
   onSelect,
   onRemove,
   extraOption,
-}: ArmorOptionProps) => {
+}: Props) => {
   const [isOpen, setIsOpen] = useState(false)
   const setArmorItems = useArmorItemsStore(state => state.setArmorItems)
   const armorItem = useArmorItemsStore(state => state[armorPart].armorItem)
-  const color = useArmorDataStore(state => state[armorPart].armor.color)
+  const dye = useArmorDataStore(state => state[armorPart].armor.dye)!
 
   const closePopover = () => setIsOpen(false)
 
@@ -67,7 +67,7 @@ export const ArmorOption = ({
       itemImage = await loadLeatherArmorItem({
         pluralArmorPart,
         itemPath: data.itemPath,
-        color: color!
+        dye
       })
     }
 
@@ -79,8 +79,8 @@ export const ArmorOption = ({
   const handleSelectExtra = () => {
     if (!extraOption) return
 
-    extraOption.onSelect()
     setArmorItems({ [armorPart]: { armorItem: extraOption.itemPath } })
+    extraOption.onSelect()
     closePopover()
   }
 
@@ -107,7 +107,7 @@ export const ArmorOption = ({
         label="Remove"
         onClick={handleRemove}
       >
-        <Cancel size={38} />
+        <CancelIcon size={38} />
       </TextureButton>
 
       {optionsData.map((data, index) => {
@@ -122,7 +122,7 @@ export const ArmorOption = ({
               <LeatherItemImage
                 pluralArmorPart={pluralArmorPart}
                 itemPath={data.itemPath}
-                color={color!}
+                dye={dye}
                 alt={alt}
                 size={iconSize}
               />

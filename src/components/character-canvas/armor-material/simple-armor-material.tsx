@@ -4,12 +4,12 @@ import { useMcTexture } from "@/hooks/use-mc-texture"
 
 interface Props {
   armorUrl: string
-  armorColor?: string
+  armorDye?: string
 }
 
 export const SimpleArmorMaterial: React.FC<Props> = ({
   armorUrl,
-  armorColor = "#ffffff",
+  armorDye = "#ffffff",
 }) => {
   const materialRef = useRef<MeshStandardMaterial>(null)
   const texture = useMcTexture(armorUrl)
@@ -17,8 +17,8 @@ export const SimpleArmorMaterial: React.FC<Props> = ({
   useEffect(() => {
     const material = materialRef.current
     if (!material) return
-    material.color.set(armorColor)
-  }, [armorColor])
+    material.color.set(armorDye)
+  }, [armorDye])
 
   return (
     <meshStandardMaterial

@@ -3,13 +3,13 @@ import { hexToRGB } from "@/utils/to-rgb"
 
 interface Props {
   itemImage: HTMLImageElement
-  color: string
+  dye: string
   overlayImage?: HTMLImageElement
 }
 
-export const colorLeatherArmorItem = async ({
+export const dyeLeatherArmorItem = async ({
   itemImage,
-  color,
+  dye,
   overlayImage
 }: Props): Promise<string> => {
   const width = itemImage.width
@@ -20,7 +20,7 @@ export const colorLeatherArmorItem = async ({
 
   const imageData = ctx.getImageData(0, 0, width, height)
   const data = imageData.data
-  const { r, g, b } = hexToRGB(color)
+  const { r, g, b } = hexToRGB(dye)
 
   for (let i = 0; i < data.length; i += 4) {
     const alpha = data[i + 3]

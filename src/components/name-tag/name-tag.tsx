@@ -21,7 +21,11 @@ export const NameTag: React.FC<Props> = ({ name }) => {
     <group ref={groupRef} position={[0, 11.5, 0]}>
       <mesh position={[0, 0, -0.01]}>
         <planeGeometry args={[name.length * 1.5, 2.5]} />
-        <meshBasicMaterial color="black" transparent opacity={0.5} />
+        <meshBasicMaterial
+          color="black"
+          transparent
+          opacity={0.5}
+        />
       </mesh>
       <Text
         font="/fonts/Minecraft.woff"

@@ -8,7 +8,7 @@ interface Props {
   size: number
   pluralArmorPart: PluralBasicArmorPartName
   itemPath: string
-  color: string
+  dye: string
 }
 
 export const LeatherItemImage: React.FC<Props> = ({
@@ -16,23 +16,23 @@ export const LeatherItemImage: React.FC<Props> = ({
   size,
   pluralArmorPart,
   itemPath,
-  color,
+  dye,
 }) => {
   const [src, setSrc] = useState("")
 
   useEffect(() => {
-    const colorItemImage = async () => {
+    const dyeItemImage = async () => {
       const itemImage = await loadLeatherArmorItem({
         pluralArmorPart,
         itemPath,
-        color
+        dye
       })
 
       setSrc(itemImage)
     }
 
-    colorItemImage()
-  }, [color, itemPath, pluralArmorPart])
+    dyeItemImage()
+  }, [dye, itemPath, pluralArmorPart])
 
   if (src === "") return
 

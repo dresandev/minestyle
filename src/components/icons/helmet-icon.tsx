@@ -1,6 +1,6 @@
 import type { Icon } from "@/types"
 
-export const Helmet = ({ size, ...props }: Icon) => (
+export const HelmetIcon = ({ size, ...props }: Icon) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}

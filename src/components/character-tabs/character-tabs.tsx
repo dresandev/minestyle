@@ -5,10 +5,11 @@ import {
   TabsContent,
 } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
-import { Skin } from "@/components/icons/skin"
-import { Cape } from "@/components/icons/cape"
-import { ArmorPlaceholder } from "@/components/icons/armor-placeholder"
+import { SkinIcon } from "@/components/icons/skin-icon"
+import { CapeIcon } from "@/components/icons/cape-icon"
+import { ArmorIcon } from "@/components/icons/armor-icon"
 import { ArmorSelector } from "@/components/armor-selector"
+import { DyeSelector } from "@/components/dye-selector"
 import styles from "./character-tabs.module.css"
 
 export const CharacterTabs = () => {
@@ -30,7 +31,7 @@ export const CharacterTabs = () => {
             squareSize={64}
             className={styles.tabListTrigger}
           >
-            <ArmorPlaceholder size={42} />
+            <ArmorIcon size={42} />
           </Button>
         </TabsTrigger>
 
@@ -45,7 +46,7 @@ export const CharacterTabs = () => {
             squareSize={64}
             className={styles.tabListTrigger}
           >
-            <Skin size={55} />
+            <SkinIcon size={55} />
           </Button>
         </TabsTrigger>
         <TabsTrigger
@@ -59,7 +60,7 @@ export const CharacterTabs = () => {
             squareSize={64}
             className={styles.tabListTrigger}
           >
-            <Cape size={42} />
+            <CapeIcon size={42} />
           </Button>
         </TabsTrigger>
       </TabsList>
@@ -67,6 +68,7 @@ export const CharacterTabs = () => {
       <TabsContent value="armor">
         <div className={styles.tabsContent}>
           <ArmorSelector />
+          <DyeSelector />
         </div>
       </TabsContent>
       <TabsContent value="skin">

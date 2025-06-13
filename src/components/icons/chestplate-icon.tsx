@@ -1,6 +1,6 @@
 import type { Icon } from "@/types"
 
-export const Material = ({ size, ...props }: Icon) => (
+export const ChestplateIcon = ({ size = 24, ...props }: Icon) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}
@@ -11,7 +11,7 @@ export const Material = ({ size, ...props }: Icon) => (
   >
     <path
       fill="currentColor"
-      d="M4 10v5h1v1h1v1h1v1h4v-1h3v-1h3v-1h2v-1h1v-4h-1V9h-1V8h-1V7h-1V6h-2v1h-3v1H8v1H5v1H4Z"
+      d="M8.143 21h7.714v-1.308h1.286v-1.307h1.286v-6.539H21V4h-6.429v2.615h-1.285v1.308h-2.572V6.615H9.43V4H3v7.846h2.571v6.539h1.286v1.307h1.286V21Z"
     />
   </svg>
 )

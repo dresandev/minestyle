@@ -1,4 +1,4 @@
-import { loadMCTexture } from "@/helpers/load-mc-texture"
+import { loadMcTexture } from "@/helpers/load-mc-texture"
 
 interface Props {
   textureUrl: string
@@ -15,7 +15,7 @@ export const Material: React.FC<Props> = ({
   side,
   color
 }) => {
-  const texture = loadMCTexture(textureUrl)
+  const texture = loadMcTexture(textureUrl)
 
   return (
     <meshStandardMaterial

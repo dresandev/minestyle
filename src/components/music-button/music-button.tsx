@@ -1,9 +1,9 @@
 "use client"
 
 import useSound from "use-sound"
-import { MusicOn } from "@/components/icons/music-on"
+import { MusicOnIcon } from "@/components/icons/music-on-icon"
 import { useEffect, useState } from "react"
-import { MusicOff } from "@/components/icons/music-off"
+import { MusicOffIcon } from "@/components/icons/music-off-icon"
 import { Button } from "@/components/ui/button"
 
 const MUSIC_VOLUME = .15
@@ -89,7 +89,7 @@ export const MusicButton = () => {
       square
       onClick={handleClick}
     >
-      {isPlaying ? <MusicOn /> : <MusicOff />}
+      {isPlaying ? <MusicOnIcon /> : <MusicOffIcon />}
     </Button>
   )
 }

@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react"
+import { CSSProperties, PropsWithChildren } from "react"
 import { Popover, PopoverContent } from "@/components/ui/popover"
 import { TextureButton } from "@/components/texture-button"
 import styles from "./popover-option.module.css"
@@ -9,7 +9,9 @@ interface Props extends PropsWithChildren {
   trigger: {
     label: string
     icon: React.ReactNode
-  }
+    disabled?: boolean
+  },
+  contentColumns?: number
 }
 
 export const OptionPopover: React.FC<Props> = ({
@@ -19,7 +21,9 @@ export const OptionPopover: React.FC<Props> = ({
   trigger: {
     label,
     icon,
-  }
+    disabled
+  },
+  contentColumns = 4
 }) => {
   return (
     <Popover
@@ -28,11 +32,15 @@ export const OptionPopover: React.FC<Props> = ({
     >
       <TextureButton
         label={label}
+        disabled={disabled}
         asPopoverTrigger
       >
         {icon}
       </TextureButton>
-      <PopoverContent className={styles.content}>
+      <PopoverContent
+        style={{ "--columns": contentColumns } as CSSProperties}
+        className={styles.content}
+      >
         {children}
       </PopoverContent>
     </Popover>

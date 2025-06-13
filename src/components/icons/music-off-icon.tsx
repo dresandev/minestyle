@@ -1,6 +1,6 @@
 import { SVGProps } from "react"
 
-export const MusicOff = (props: SVGProps<SVGSVGElement>) => (
+export const MusicOffIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={22}

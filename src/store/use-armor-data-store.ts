@@ -7,7 +7,7 @@ export interface ArmorPartData {
   isVisible?: boolean
   armor: {
     isLeather?: boolean
-    color?: string
+    dye?: string
     url: string
   }
   trim: {
@@ -41,27 +41,27 @@ export interface Actions {
 const INIT_STATE = {
   helmet: {
     isVisible: false,
-    armor: { isLeather: false, url: "", color: DYE_COLORS.brown },
+    armor: { isLeather: false, url: "", dye: DYE_COLORS.brown },
     trim: { url: "", materialUrl: "" },
   },
   chestplate: {
     isVisible: false,
-    armor: { isLeather: false, url: "", color: DYE_COLORS.brown },
+    armor: { isLeather: false, url: "", dye: DYE_COLORS.brown },
     trim: { url: "", materialUrl: "" },
   },
   innerChestplate: {
     isVisible: false,
-    armor: { isLeather: false, url: "", color: DYE_COLORS.brown },
+    armor: { isLeather: false, url: "", dye: DYE_COLORS.brown },
     trim: { url: "", materialUrl: "" },
   },
   leggings: {
     isVisible: false,
-    armor: { isLeather: false, url: "", color: DYE_COLORS.brown },
+    armor: { isLeather: false, url: "", dye: DYE_COLORS.brown },
     trim: { url: "", materialUrl: "" },
   },
   boots: {
     isVisible: false,
-    armor: { isLeather: false, url: "", color: DYE_COLORS.brown },
+    armor: { isLeather: false, url: "", dye: DYE_COLORS.brown },
     trim: { url: "", materialUrl: "" },
   },
 }

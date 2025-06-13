@@ -1,9 +1,10 @@
-import type { BasicArmorPartName } from "@/types"
 import { create } from "zustand"
+import type { BasicArmorPartName } from "@/types"
+import { BASE_DYE_ITEM_PATH } from "@/constants/texture-paths"
 
 interface ArmorItems {
   armorItem?: string
-  colorItem?: string
+  dyeItem?: string
   trimItem?: string
   materialItem?: string
 }
@@ -14,34 +15,36 @@ interface Actions {
   setArmorItems: (data: Partial<State>) => void
 }
 
+const DEFAULT_DYE_ITEM = `${BASE_DYE_ITEM_PATH}/brown.png`
+
 const INIT_STATE = {
   set: {
     armorItem: "",
-    colorItem: "",
+    dyeItem: DEFAULT_DYE_ITEM,
     trimItem: "",
     materialItem: "",
   },
   helmet: {
     armorItem: "",
-    colorItem: "",
+    dyeItem: DEFAULT_DYE_ITEM,
     trimItem: "",
     materialItem: "",
   },
   chestplate: {
     armorItem: "",
-    colorItem: "",
+    dyeItem: DEFAULT_DYE_ITEM,
     trimItem: "",
     materialItem: "",
   },
   leggings: {
     armorItem: "",
-    colorItem: "",
+    dyeItem: DEFAULT_DYE_ITEM,
     trimItem: "",
     materialItem: "",
   },
   boots: {
     armorItem: "",
-    colorItem: "",
+    dyeItem: DEFAULT_DYE_ITEM,
     trimItem: "",
     materialItem: "",
   }
