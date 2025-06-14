@@ -1,14 +1,15 @@
-import type { PluralBasicArmorPartName } from "@/types"
+import type { BasicArmorPartName } from "@/types"
 import { dyeLeatherArmorItem } from "@/helpers/dye-leather-armor-item"
+import { toPlural } from "@/helpers/to-plural"
 
 interface Props {
-  pluralArmorPart: PluralBasicArmorPartName
+  armorPart: BasicArmorPartName
   itemPath: string
   dye: string
 }
 
 export const loadLeatherArmorItem = async ({
-  pluralArmorPart,
+  armorPart,
   itemPath,
   dye,
 }: Props): Promise<string> => {
@@ -17,6 +18,8 @@ export const loadLeatherArmorItem = async ({
     itemImage.src = itemPath
     itemImage.onerror = reject
     itemImage.onload = async () => {
+      const pluralArmorPart = toPlural(armorPart)
+
       if (pluralArmorPart === "chestplates") {
         const base64 = await dyeLeatherArmorItem({
           itemImage,

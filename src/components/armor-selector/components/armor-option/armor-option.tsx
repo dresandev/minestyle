@@ -1,9 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import type { BasicArmorPartName, PluralBasicArmorPartName } from "@/types"
+import type { BasicArmorPartName } from "@/types"
 import { loadLeatherArmorItem } from "@/helpers/load-armor-leather-item"
-import { toPlural } from "@/helpers/to-plural"
 import { useArmorDataStore } from "@/store/use-armor-data-store"
 import { useArmorItemsStore } from "@/store/use-armor-items-store"
 import { TextureButton } from "@/components/texture-button"
@@ -51,6 +50,7 @@ export const ArmorOption = ({
   const setArmorItems = useArmorItemsStore(state => state.setArmorItems)
   const armorItem = useArmorItemsStore(state => state[armorPart].armorItem)
   const dye = useArmorDataStore(state => state[armorPart].armor.dye)!
+  const isLeather = useArmorDataStore(state => state[armorPart].armor.isLeather)
 
   const closePopover = () => setIsOpen(false)
 
@@ -61,17 +61,17 @@ export const ArmorOption = ({
   }
 
   const handleSelectArmor = async (data: ArmorOptionData) => {
-    let itemImage = data.itemPath
+    let armorItem = data.itemPath
 
     if (data.isLeather) {
-      itemImage = await loadLeatherArmorItem({
-        pluralArmorPart,
+      armorItem = await loadLeatherArmorItem({
+        armorPart,
         itemPath: data.itemPath,
         dye
       })
     }
 
-    setArmorItems({ [armorPart]: { armorItem: itemImage } })
+    setArmorItems({ [armorPart]: { armorItem } })
     onSelect(data)
     closePopover()
   }
@@ -85,13 +85,19 @@ export const ArmorOption = ({
   }
 
   const iconSize = 48
-  const pluralArmorPart = toPlural(armorPart) as PluralBasicArmorPartName
   const triggerIcon = armorItem ? (
-    <ItemImage
-      src={armorItem}
-      alt={`${label} armor item`}
-      size={iconSize}
-    />
+    isLeather ?
+      <LeatherItemImage
+        armorPart={armorPart}
+        dye={dye}
+        alt={`${label} armor item`}
+        size={iconSize}
+      />
+      : <ItemImage
+        src={armorItem}
+        alt={`${label} armor item`}
+        size={iconSize}
+      />
   ) : icon
 
   return (
@@ -120,8 +126,7 @@ export const ArmorOption = ({
           >
             {data.isLeather ? (
               <LeatherItemImage
-                pluralArmorPart={pluralArmorPart}
-                itemPath={data.itemPath}
+                armorPart={armorPart}
                 dye={dye}
                 alt={alt}
                 size={iconSize}

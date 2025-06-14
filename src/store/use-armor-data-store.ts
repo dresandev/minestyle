@@ -36,6 +36,8 @@ export interface Actions {
   setArmorPart: (data: Partial<PartialArmorData>) => void
   setTrimPart: (data: Partial<PartialTrimData>) => void
   setArmorPartVisibility: (data: Partial<Record<ArmorPartName, boolean>>) => void
+  setArmorPartIsLeather: (data: Partial<Record<ArmorPartName, boolean>>) => void
+  setArmorPartDye: (data: Partial<Record<ArmorPartName, string>>) => void
 }
 
 const INIT_STATE = {
@@ -103,11 +105,27 @@ export const useArmorDataStore = create<State & Actions>()(
         for (const partKey in newParts) {
           const partName = partKey as ArmorPartName
           const isVisible = newParts[partName]
-          if (typeof isVisible === "boolean") {
-            state[partName].isVisible = isVisible
-          }
+          state[partName].isVisible = isVisible
         }
       })
-    }
+    },
+    setArmorPartIsLeather: (newParts) => {
+      set((state) => {
+        for (const partKey in newParts) {
+          const partName = partKey as ArmorPartName
+          const isLeather = newParts[partName]
+          state[partName].armor.isLeather = isLeather
+        }
+      })
+    },
+    setArmorPartDye: (newParts) => {
+      set((state) => {
+        for (const partKey in newParts) {
+          const partName = partKey as ArmorPartName
+          const dye = newParts[partName]
+          state[partName].armor.dye = dye
+        }
+      })
+    },
   }))
 )

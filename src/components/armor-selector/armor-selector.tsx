@@ -1,9 +1,10 @@
 "use client"
 
 import type { ArmorPartName, TextureLayer } from "@/types"
+import { createRecordFromKeys } from "@/helpers/create-record-from-keys"
 import { useArmorDataStore } from "@/store/use-armor-data-store"
 import { useBackEquipmentDataStore } from "@/store/use-back-equipment-data-store"
-import { armorOptionData, createArmorData, createVisibilityData } from "./helpers/armor-data"
+import { armorOptionData, createArmorData } from "./helpers/armor-data"
 import { BootsIcon } from "@/components/icons/boots-icon"
 import { ChestplateIcon } from "@/components/icons/chestplate-icon"
 import { HelmetIcon } from "@/components/icons/helmet-icon"
@@ -13,12 +14,13 @@ import { type ArmorOptionData, ArmorOption } from "./components/armor-option"
 export const ArmorSelector = () => {
   const setArmorPart = useArmorDataStore(state => state.setArmorPart)
   const setArmorPartVisibility = useArmorDataStore(state => state.setArmorPartVisibility)
+  const setArmorPartIsLeather = useArmorDataStore(state => state.setArmorPartIsLeather)
   const setBackEquipment = useBackEquipmentDataStore(state => state.setBackEquipment)
 
   const handleSelectArmorPart = (parts: ArmorPartName[], layer: TextureLayer) => {
     return (data: ArmorOptionData) => {
-      const armorPartData = createArmorData(parts, layer, data)
-      setArmorPart(armorPartData)
+      const armorPartsData = createArmorData(parts, layer, data)
+      setArmorPart(armorPartsData)
 
       if (parts.includes("chestplate")) {
         setBackEquipment({
@@ -36,11 +38,12 @@ export const ArmorSelector = () => {
     })
 
     setArmorPartVisibility({ chestplate: false })
+    setArmorPartIsLeather({ chestplate: false })
   }
 
   const handleRemoveArmorPart = (parts: ArmorPartName[]) => () => {
-    const visibilityData = createVisibilityData(parts, false)
-    setArmorPartVisibility(visibilityData)
+    const setFalseData = createRecordFromKeys(parts, false)
+    setArmorPartVisibility(setFalseData)
 
     if (parts.includes("chestplate")) {
       setBackEquipment({
@@ -48,6 +51,8 @@ export const ArmorSelector = () => {
         cape: { isVisible: true }
       })
     }
+
+    setArmorPartIsLeather(setFalseData)
   }
 
   const iconSize = 48

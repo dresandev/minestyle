@@ -31,13 +31,6 @@ export const createArmorData = (
   return armorData
 }
 
-export const createVisibilityData = (parts: ArmorPartName[], isVisible: boolean) => {
-  return parts.reduce((acc, key) => {
-    acc[key] = isVisible
-    return acc
-  }, {} as Record<ArmorPartName, boolean>)
-}
-
 const createArmorOptionData = (part: PluralBasicArmorPartName, data: PartialArmorOptionData[]): ArmorOptionData[] => {
   const armorOptionData = data.map(({ type, label, isLeather }) => ({
     label,

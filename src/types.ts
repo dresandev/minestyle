@@ -42,12 +42,6 @@ export type BasicArmorPartName =
 
 export type ArmorPartName = BasicArmorPartName | "innerChestplate"
 
-export type PluralBasicArmorPartName =
-  | "helmets"
-  | "chestplates"
-  | "leggings"
-  | "boots"
-
 export type ArmorType =
   | "chainmail"
   | "diamond"
