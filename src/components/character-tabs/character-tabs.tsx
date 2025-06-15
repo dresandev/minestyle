@@ -8,8 +8,10 @@ import { Button } from "@/components/ui/button"
 import { SkinIcon } from "@/components/icons/skin-icon"
 import { CapeIcon } from "@/components/icons/cape-icon"
 import { ArmorIcon } from "@/components/icons/armor-icon"
-import { ArmorSelector } from "@/components/armor-selector"
-import { DyeSelector } from "@/components/dye-selector"
+import { ArmorSelector } from "@/components/armor-option-selectors/armor-selector"
+import { DyeSelector } from "@/components/armor-option-selectors/dye-selector"
+import { TrimMaterialSelector } from "@/components/armor-option-selectors/trim-material-selector"
+import { TrimSelector } from "@/components/armor-option-selectors/trim-selector"
 import styles from "./character-tabs.module.css"
 
 export const CharacterTabs = () => {
@@ -69,6 +71,8 @@ export const CharacterTabs = () => {
         <div className={styles.tabsContent}>
           <ArmorSelector />
           <DyeSelector />
+          <TrimSelector />
+          <TrimMaterialSelector />
         </div>
       </TabsContent>
       <TabsContent value="skin">

@@ -1,6 +1,6 @@
 import { create } from "zustand"
 import type { BasicArmorPartName } from "@/types"
-import { BASE_DYE_ITEM_PATH } from "@/constants/texture-paths"
+import { BASE_DYE_ITEM_PATH } from "@/constants/image-paths"
 
 interface ArmorItems {
   armorItem?: string

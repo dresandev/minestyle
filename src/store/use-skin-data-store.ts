@@ -1,6 +1,6 @@
 import { create } from "zustand"
 import type { BodyPartName } from "@/types"
-import { DEFAULT_SKIN_PATH } from "@/constants/texture-paths"
+import { DEFAULT_SKIN } from "@/constants/image-paths"
 
 interface SkinData {
   skin: string
@@ -13,7 +13,7 @@ type State = SkinData
 type Actions = { setSkinData: (skinData: SkinData) => void }
 
 const INIT_STATE = {
-  skin: DEFAULT_SKIN_PATH,
+  skin: DEFAULT_SKIN,
   isSlim: true,
   hasOuterLayer: {
     head: true,

@@ -1,47 +1,53 @@
 "use client"
 
 import { useState } from "react"
-import type { BasicArmorPartName } from "@/types"
+import type { BasicArmorPartName, TextureLayer } from "@/types"
+import { OPTIONS_ICON_SIZE } from "@/constants/ui"
 import { useArmorItemsStore } from "@/store/use-armor-items-store"
-import { useArmorDataStore } from "@/store/use-armor-data-store"
 import { OptionPopover } from "@/components/popover-option"
 import { ItemImage } from "@/components/item-image"
 import { TextureButton } from "@/components/texture-button"
 
-export interface DyeOptionData {
+export interface TrimOptionData {
   label: string
   itemPath: string
-  dye: string
-  dyeName: string
+  texturePath: Record<TextureLayer, string>
 }
 
 interface Props {
   label: string
+  icon: React.ReactNode
   armorPart: BasicArmorPartName
-  optionsData: DyeOptionData[]
-  onSelect: (data: DyeOptionData) => void
+  optionsData: TrimOptionData[]
+  onSelect: (data: TrimOptionData) => void
 }
 
-export const DyeOption: React.FC<Props> = ({
+export const TrimOption: React.FC<Props> = ({
   label,
+  icon,
   armorPart,
   optionsData,
   onSelect,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
   const setArmorItems = useArmorItemsStore(state => state.setArmorItems)
-  const dyeItem = useArmorItemsStore(state => state[armorPart].dyeItem)
-  const isLeather = useArmorDataStore(state => state[armorPart].armor.isLeather)
+  const trimItem = useArmorItemsStore(state => state[armorPart].trimItem)
 
   const closePopover = () => setIsOpen(false)
 
-  const handleSelectArmor = (data: DyeOptionData) => {
-    setArmorItems({ [armorPart]: { dyeItem: data.itemPath } })
+  const handleSelectArmor = (data: TrimOptionData) => {
+    setArmorItems({ [armorPart]: { trimItem: data.itemPath } })
     onSelect(data)
     closePopover()
   }
 
-  const iconSize = 48
+  const triggerIcon = trimItem ? (
+    <ItemImage
+      src={trimItem}
+      alt={`${label} item`}
+      size={OPTIONS_ICON_SIZE}
+    />
+  ) : icon
 
   return (
     <OptionPopover
@@ -49,14 +55,7 @@ export const DyeOption: React.FC<Props> = ({
       onOpenChange={setIsOpen}
       trigger={{
         label,
-        icon: (
-          <ItemImage
-            src={dyeItem!}
-            alt={`${label} armor item`}
-            size={iconSize}
-          />
-        ),
-        disabled: !isLeather
+        icon: triggerIcon,
       }}
       contentColumns={5}
     >
@@ -68,8 +67,8 @@ export const DyeOption: React.FC<Props> = ({
         >
           <ItemImage
             src={data.itemPath}
-            alt={`${data.dyeName} dye item`}
-            size={iconSize}
+            alt={`${data.label} item`}
+            size={OPTIONS_ICON_SIZE}
           />
         </TextureButton>
       ))}

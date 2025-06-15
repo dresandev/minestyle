@@ -1,5 +1,4 @@
 .wrapper {
-  block-size: 3lh;
   display: flex;
   flex-direction: column;
 }

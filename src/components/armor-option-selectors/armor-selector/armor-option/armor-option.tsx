@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import type { BasicArmorPartName } from "@/types"
+import { OPTIONS_ICON_SIZE } from "@/constants/ui"
 import { loadLeatherArmorItem } from "@/helpers/load-armor-leather-item"
 import { useArmorDataStore } from "@/store/use-armor-data-store"
 import { useArmorItemsStore } from "@/store/use-armor-items-store"
@@ -9,16 +10,13 @@ import { TextureButton } from "@/components/texture-button"
 import { CancelIcon } from "@/components/icons/cancel-icon"
 import { OptionPopover } from "@/components/popover-option"
 import { ItemImage } from "@/components/item-image"
-import { LeatherItemImage } from "../../components/leather-item-image"
+import { LeatherItemImage } from "../leather-item-image"
 
 export interface ArmorOptionData {
   label: string
   itemPath: string
   isLeather: boolean
-  texturePath: {
-    layer1: string
-    layer2: string
-  }
+  texturePath: string
 }
 
 interface ExtraOption {
@@ -84,20 +82,21 @@ export const ArmorOption = ({
     closePopover()
   }
 
-  const iconSize = 48
   const triggerIcon = armorItem ? (
-    isLeather ?
+    isLeather ? (
       <LeatherItemImage
         armorPart={armorPart}
         dye={dye}
         alt={`${label} armor item`}
-        size={iconSize}
+        size={OPTIONS_ICON_SIZE}
       />
-      : <ItemImage
+    ) : (
+      <ItemImage
         src={armorItem}
         alt={`${label} armor item`}
-        size={iconSize}
+        size={OPTIONS_ICON_SIZE}
       />
+    )
   ) : icon
 
   return (
@@ -129,13 +128,13 @@ export const ArmorOption = ({
                 armorPart={armorPart}
                 dye={dye}
                 alt={alt}
-                size={iconSize}
+                size={OPTIONS_ICON_SIZE}
               />
             ) : (
               <ItemImage
                 src={data.itemPath}
                 alt={alt}
-                size={iconSize}
+                size={OPTIONS_ICON_SIZE}
               />
             )}
           </TextureButton>
@@ -149,7 +148,7 @@ export const ArmorOption = ({
           <ItemImage
             src={extraOption.itemPath}
             alt={`${extraOption.label} item`}
-            size={iconSize}
+            size={OPTIONS_ICON_SIZE}
           />
         </TextureButton>
       )}

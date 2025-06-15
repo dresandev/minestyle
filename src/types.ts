@@ -19,7 +19,7 @@ export type BoxSidesImage = [
   back: string,
 ]
 export type Icon = { size?: number } & React.SVGProps<SVGSVGElement>
-export type TextureLayer = "layer1" | "layer2"
+export type TextureLayer = "layer-1" | "layer-2"
 
 export interface BoxData {
   size: Geometry
@@ -50,6 +50,39 @@ export type ArmorType =
   | "leather"
   | "netherite"
   | "turtle"
+
+export type TrimName =
+  | "bolt"
+  | "coast"
+  | "dune"
+  | "eye"
+  | "flow"
+  | "host"
+  | "raiser"
+  | "rib"
+  | "sentry"
+  | "shaper"
+  | "silence"
+  | "snout"
+  | "spire"
+  | "tide"
+  | "vex"
+  | "ward"
+  | "wayfinder"
+  | "wild"
+
+export type TrimMaterialName =
+  | "amethyst-shard"
+  | "copper-ingot"
+  | "diamond"
+  | "emerald"
+  | "gold-ingot"
+  | "iron-ingot"
+  | "lapis-lazuli"
+  | "netherite-ingot"
+  | "quartz"
+  | "redstone"
+  | "resin-brick"
 
 export interface BodyPartData {
   name: BodyPartName

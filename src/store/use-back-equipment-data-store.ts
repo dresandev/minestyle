@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import { DEFAULT_CAPE_PATH } from "@/constants/texture-paths"
+import { DEFAULT_CAPE } from "@/constants/image-paths"
 
 interface BackEquipmentData {
   isVisible?: boolean
@@ -22,11 +22,11 @@ interface Actions {
 const INIT_STATE = {
   cape: {
     isVisible: true,
-    url: DEFAULT_CAPE_PATH,
+    url: DEFAULT_CAPE,
   },
   elytra: {
     isVisible: false,
-    url: DEFAULT_CAPE_PATH,
+    url: DEFAULT_CAPE,
   }
 }
 
