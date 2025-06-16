@@ -3,30 +3,22 @@
   backdrop-filter: blur(8px);
   padding: 12px;
   border-radius: 4px;
+  animation-duration: 350ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
 }
 
 .content[data-state="open"] {
-  animation: fadeIn 250ms ease-in;
+  animation-name: slide-and-fade;
 }
 
-.content[data-state="closed"] {
-  animation: fadeOut 250ms ease-out;
-}
-
-@keyframes fadeIn {
+@keyframes slide-and-fade {
   from {
     opacity: 0;
+    transform: translateY(2px);
   }
   to {
     opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
+    transform: translateY(0);
   }
 }
