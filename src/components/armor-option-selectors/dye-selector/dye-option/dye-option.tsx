@@ -2,18 +2,13 @@
 
 import { useState } from "react"
 import type { BasicArmorPartName } from "@/types"
+import type { DyeOptionData } from "@/constants/dye-options-data"
 import { OPTIONS_ICON_SIZE } from "@/constants/ui"
 import { useArmorItemsStore } from "@/store/use-armor-items-store"
 import { useArmorDataStore } from "@/store/use-armor-data-store"
 import { OptionPopover } from "@/components/popover-option"
 import { ItemImage } from "@/components/item-image"
 import { TextureButton } from "@/components/texture-button"
-
-export interface DyeOptionData {
-  label: string
-  itemPath: string
-  dye: string
-}
 
 interface Props {
   label: string

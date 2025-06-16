@@ -6,49 +6,26 @@ export interface TrimMaterial {
   texturePath: string
 }
 
-export const TRIM_MATERIAL_TEXTURES: TrimMaterial[] = [
-  {
-    name: "amethyst-shard",
-    texturePath: getTrimMaterialTexturePath("amethyst-shard"),
-  },
-  {
-    name: "copper-ingot",
-    texturePath: getTrimMaterialTexturePath("copper-ingot"),
-  },
-  {
-    name: "diamond",
-    texturePath: getTrimMaterialTexturePath("diamond"),
-  },
-  {
-    name: "emerald",
-    texturePath: getTrimMaterialTexturePath("emerald"),
-  },
-  {
-    name: "gold-ingot",
-    texturePath: getTrimMaterialTexturePath("gold-ingot"),
-  },
-  {
-    name: "iron-ingot",
-    texturePath: getTrimMaterialTexturePath("iron-ingot"),
-  },
-  {
-    name: "lapis-lazuli",
-    texturePath: getTrimMaterialTexturePath("lapis-lazuli"),
-  },
-  {
-    name: "netherite-ingot",
-    texturePath: getTrimMaterialTexturePath("netherite-ingot"),
-  },
-  {
-    name: "quartz",
-    texturePath: getTrimMaterialTexturePath("quartz"),
-  },
-  {
-    name: "redstone",
-    texturePath: getTrimMaterialTexturePath("redstone"),
-  },
-  {
-    name: "resin-brick",
-    texturePath: getTrimMaterialTexturePath("resin-brick"),
-  },
+const TRIM_MATERIAL_NAMES: TrimMaterialName[] = [
+  "amethyst-shard",
+  "copper-ingot",
+  "diamond",
+  "emerald",
+  "gold-ingot",
+  "iron-ingot",
+  "lapis-lazuli",
+  "netherite-ingot",
+  "quartz",
+  "redstone",
+  "resin-brick"
 ]
+
+const getTrimMaterialTexture = () => (
+  TRIM_MATERIAL_NAMES.map((name) => ({
+    name,
+    texturePath: getTrimMaterialTexturePath(name)
+  }))
+)
+
+
+export const TRIM_MATERIAL_TEXTURES = getTrimMaterialTexture()

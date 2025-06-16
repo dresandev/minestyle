@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import type { BasicArmorPartName } from "@/types"
+import type { ArmorOptionData } from "@/constants/armor-options-data"
 import { OPTIONS_ICON_SIZE } from "@/constants/ui"
 import { loadLeatherArmorItem } from "@/helpers/load-armor-leather-item"
 import { useArmorDataStore } from "@/store/use-armor-data-store"
@@ -11,13 +12,6 @@ import { CancelIcon } from "@/components/icons/cancel-icon"
 import { OptionPopover } from "@/components/popover-option"
 import { ItemImage } from "@/components/item-image"
 import { LeatherItemImage } from "../leather-item-image"
-
-export interface ArmorOptionData {
-  label: string
-  itemPath: string
-  isLeather: boolean
-  texturePath: string
-}
 
 interface ExtraOption {
   label: string

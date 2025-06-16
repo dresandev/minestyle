@@ -2,17 +2,12 @@
 
 import { useState } from "react"
 import type { BasicArmorPartName } from "@/types"
+import type { TrimMaterialOptionData } from "@/constants/trim-material-options-data"
 import { OPTIONS_ICON_SIZE } from "@/constants/ui"
 import { useArmorItemsStore } from "@/store/use-armor-items-store"
 import { OptionPopover } from "@/components/popover-option"
 import { ItemImage } from "@/components/item-image"
 import { TextureButton } from "@/components/texture-button"
-
-export interface TrimMaterialOptionData {
-  label: string
-  itemPath: string
-  texturePath: string
-}
 
 interface Props {
   label: string

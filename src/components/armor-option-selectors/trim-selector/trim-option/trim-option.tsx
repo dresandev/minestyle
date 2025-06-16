@@ -1,18 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import type { BasicArmorPartName, TextureLayer } from "@/types"
+import type { BasicArmorPartName } from "@/types"
+import type { TrimOptionData } from "@/constants/trim-options-data"
 import { OPTIONS_ICON_SIZE } from "@/constants/ui"
 import { useArmorItemsStore } from "@/store/use-armor-items-store"
 import { OptionPopover } from "@/components/popover-option"
 import { ItemImage } from "@/components/item-image"
 import { TextureButton } from "@/components/texture-button"
-
-export interface TrimOptionData {
-  label: string
-  itemPath: string
-  texturePath: Record<TextureLayer, string>
-}
 
 interface Props {
   label: string

@@ -3,10 +3,11 @@
 import type { ArmorPartName } from "@/types"
 import { OPTIONS_ICON_SIZE } from "@/constants/ui"
 import {
-  BOOTS_OPTIONS_DATA,
-  CHESTPLATE_OPTIONS_DATA,
-  HELMET_OPTIONS_DATA,
-  LEGGINS_OPTIONS_DATA,
+  type ArmorOptionData,
+  HELMET_ARMOR_OPTIONS_DATA,
+  CHESTPLATE_ARMOR_OPTIONS_DATA,
+  LEGGINS_ARMOR_OPTIONS_DATA,
+  BOOTS_ARMOR_OPTIONS_DATA,
 } from "@/constants/armor-options-data"
 import type { PartialArmorData } from "@/store/use-armor-data-store"
 import { useArmorDataStore } from "@/store/use-armor-data-store"
@@ -16,7 +17,7 @@ import { BootsIcon } from "@/components/icons/boots-icon"
 import { ChestplateIcon } from "@/components/icons/chestplate-icon"
 import { HelmetIcon } from "@/components/icons/helmet-icon"
 import { LeggingsIcon } from "@/components/icons/leggings-icon"
-import { type ArmorOptionData, ArmorOption } from "./armor-option"
+import { ArmorOption } from "./armor-option"
 
 export const ArmorSelector = () => {
   const setArmorPart = useArmorDataStore(state => state.setArmorPart)
@@ -77,7 +78,7 @@ export const ArmorSelector = () => {
       <ArmorOption
         label="Helmet"
         armorPart="helmet"
-        optionsData={HELMET_OPTIONS_DATA}
+        optionsData={HELMET_ARMOR_OPTIONS_DATA}
         icon={<HelmetIcon size={OPTIONS_ICON_SIZE} />}
         onSelect={handleSelectArmorPart(["helmet"])}
         onRemove={handleRemoveArmorPart(["helmet"])}
@@ -85,7 +86,7 @@ export const ArmorSelector = () => {
       <ArmorOption
         label="Chestplate"
         armorPart="chestplate"
-        optionsData={CHESTPLATE_OPTIONS_DATA}
+        optionsData={CHESTPLATE_ARMOR_OPTIONS_DATA}
         icon={<ChestplateIcon size={OPTIONS_ICON_SIZE} />}
         onSelect={handleSelectArmorPart(["chestplate"])}
         onRemove={handleRemoveArmorPart(["chestplate"])}
@@ -98,7 +99,7 @@ export const ArmorSelector = () => {
       <ArmorOption
         label="Leggings"
         armorPart="leggings"
-        optionsData={LEGGINS_OPTIONS_DATA}
+        optionsData={LEGGINS_ARMOR_OPTIONS_DATA}
         icon={<LeggingsIcon size={OPTIONS_ICON_SIZE} />}
         onSelect={handleSelectArmorPart(["leggings", "innerChestplate"])}
         onRemove={handleRemoveArmorPart(["leggings", "innerChestplate"])}
@@ -106,7 +107,7 @@ export const ArmorSelector = () => {
       <ArmorOption
         label="Boots"
         armorPart="boots"
-        optionsData={BOOTS_OPTIONS_DATA}
+        optionsData={BOOTS_ARMOR_OPTIONS_DATA}
         icon={<BootsIcon size={OPTIONS_ICON_SIZE} />}
         onSelect={handleSelectArmorPart(["boots"])}
         onRemove={handleRemoveArmorPart(["boots"])}
