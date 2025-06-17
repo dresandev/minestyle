@@ -11,7 +11,6 @@ import { TextureButton } from "@/components/texture-button"
 
 interface Props {
   label: string
-  icon: React.ReactNode
   armorPart: BasicArmorPartName
   optionsData: TrimMaterialOptionData[]
   onSelect: (data: TrimMaterialOptionData) => void
@@ -19,14 +18,13 @@ interface Props {
 
 export const TrimMaterialOption: React.FC<Props> = ({
   label,
-  icon,
   armorPart,
   optionsData,
   onSelect,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
   const setArmorItems = useArmorItemsStore(state => state.setArmorItems)
-  const materialItem = useArmorItemsStore(state => state[armorPart].materialItem)
+  const materialItem = useArmorItemsStore(state => state[armorPart].materialItem)!
 
   const closePopover = () => setIsOpen(false)
 
@@ -36,21 +34,19 @@ export const TrimMaterialOption: React.FC<Props> = ({
     closePopover()
   }
 
-  const triggerIcon = materialItem ? (
-    <ItemImage
-      src={materialItem}
-      alt={`${label} armor item`}
-      size={OPTIONS_ICON_SIZE}
-    />
-  ) : icon
-
   return (
     <OptionPopover
       open={isOpen}
       onOpenChange={setIsOpen}
       trigger={{
         label,
-        icon: triggerIcon,
+        icon: (
+          <ItemImage
+            src={materialItem}
+            alt={`${label} armor item`}
+            size={OPTIONS_ICON_SIZE}
+          />
+        ),
       }}
       contentColumns={5}
     >

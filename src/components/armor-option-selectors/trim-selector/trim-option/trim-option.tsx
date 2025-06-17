@@ -8,6 +8,7 @@ import { useArmorItemsStore } from "@/store/use-armor-items-store"
 import { OptionPopover } from "@/components/popover-option"
 import { ItemImage } from "@/components/item-image"
 import { TextureButton } from "@/components/texture-button"
+import { CancelIcon } from "@/components/icons/cancel-icon"
 
 interface Props {
   label: string
@@ -15,6 +16,7 @@ interface Props {
   armorPart: BasicArmorPartName
   optionsData: TrimOptionData[]
   onSelect: (data: TrimOptionData) => void
+  onRemove: () => void
 }
 
 export const TrimOption: React.FC<Props> = ({
@@ -23,12 +25,19 @@ export const TrimOption: React.FC<Props> = ({
   armorPart,
   optionsData,
   onSelect,
+  onRemove,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
   const setArmorItems = useArmorItemsStore(state => state.setArmorItems)
   const trimItem = useArmorItemsStore(state => state[armorPart].trimItem)
 
   const closePopover = () => setIsOpen(false)
+
+  const handleRemove = () => {
+    onRemove()
+    setArmorItems({ [armorPart]: { trimItem: "" } })
+    closePopover()
+  }
 
   const handleSelectArmor = (data: TrimOptionData) => {
     setArmorItems({ [armorPart]: { trimItem: data.itemPath } })
@@ -54,6 +63,13 @@ export const TrimOption: React.FC<Props> = ({
       }}
       contentColumns={5}
     >
+      <TextureButton
+        label="Remove"
+        onClick={handleRemove}
+      >
+        <CancelIcon size={38} />
+      </TextureButton>
+
       {optionsData.map((data, index) => (
         <TextureButton
           key={index}
