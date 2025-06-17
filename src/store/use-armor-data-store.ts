@@ -2,6 +2,7 @@ import { create } from "zustand"
 import { immer } from "zustand/middleware/immer"
 import type { ArmorPartName, BasicArmorPartName } from "@/types"
 import { DYE_COLORS } from "@/constants/dye-colors"
+import { DEFAULT_TRIM_MATERIAL_TEXTURE } from "@/constants/image-paths"
 
 export interface ArmorPartData {
   isVisible?: boolean
@@ -12,7 +13,7 @@ export interface ArmorPartData {
   }
   trim: {
     url: string
-    materialUrl: string
+    materialUrl?: string
   }
 }
 
@@ -44,27 +45,27 @@ const INIT_STATE = {
   helmet: {
     isVisible: false,
     armor: { isLeather: false, url: "", dye: DYE_COLORS.brown },
-    trim: { url: "", materialUrl: "" },
+    trim: { url: "", materialUrl: DEFAULT_TRIM_MATERIAL_TEXTURE },
   },
   chestplate: {
     isVisible: false,
     armor: { isLeather: false, url: "", dye: DYE_COLORS.brown },
-    trim: { url: "", materialUrl: "" },
+    trim: { url: "", materialUrl: DEFAULT_TRIM_MATERIAL_TEXTURE },
   },
   innerChestplate: {
     isVisible: false,
     armor: { isLeather: false, url: "", dye: DYE_COLORS.brown },
-    trim: { url: "", materialUrl: "" },
+    trim: { url: "", materialUrl: DEFAULT_TRIM_MATERIAL_TEXTURE },
   },
   leggings: {
     isVisible: false,
     armor: { isLeather: false, url: "", dye: DYE_COLORS.brown },
-    trim: { url: "", materialUrl: "" },
+    trim: { url: "", materialUrl: DEFAULT_TRIM_MATERIAL_TEXTURE },
   },
   boots: {
     isVisible: false,
     armor: { isLeather: false, url: "", dye: DYE_COLORS.brown },
-    trim: { url: "", materialUrl: "" },
+    trim: { url: "", materialUrl: DEFAULT_TRIM_MATERIAL_TEXTURE },
   },
 }
 
@@ -89,6 +90,15 @@ export const useArmorDataStore = create<State & Actions>()(
         }
       })
     },
+    setArmorPartVisibility: (newParts) => {
+      set((state) => {
+        for (const partKey in newParts) {
+          const partName = partKey as ArmorPartName
+          const isVisible = newParts[partName]
+          state[partName].isVisible = isVisible
+        }
+      })
+    },
     setTrimPart: (newParts) => {
       set((state) => {
         for (const partKey in newParts) {
@@ -97,15 +107,6 @@ export const useArmorDataStore = create<State & Actions>()(
           if (!newData?.trim) continue
 
           Object.assign(state[partName].trim, newData.trim)
-        }
-      })
-    },
-    setArmorPartVisibility: (newParts) => {
-      set((state) => {
-        for (const partKey in newParts) {
-          const partName = partKey as ArmorPartName
-          const isVisible = newParts[partName]
-          state[partName].isVisible = isVisible
         }
       })
     },

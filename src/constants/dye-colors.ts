@@ -1,7 +1,7 @@
 export const DYE_COLORS = {
+  brown: "#835432",
   black: "#1D1D21",
   blue: "#3C44AA",
-  brown: "#835432",
   cyan: "#169C9C",
   gray: "#474F52",
   green: "#5E7C16",
