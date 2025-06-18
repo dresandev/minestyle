@@ -16,7 +16,7 @@ import { TrimOption } from "./trim-option"
 export const TrimSelector = () => {
   const setTrimPart = useArmorDataStore(state => state.setTrimPart)
 
-  const handleSelectArmorPart = (part: BasicArmorPartName) => {
+  const handleSelectTrimPart = (part: BasicArmorPartName) => {
     return (data: TrimOptionData) => {
       setTrimPart({
         [part]: { trim: { url: data.texturePath } }
@@ -24,14 +24,9 @@ export const TrimSelector = () => {
     }
   }
 
-  const handleRemoveTrimPart = (part: BasicArmorPartName) => {
-    return () => {
-      setTrimPart({
-        [part]: { trim: { url: "" } }
-      })
-    }
+  const handleRemoveTrimPart = (part: BasicArmorPartName) => () => {
+    setTrimPart({ [part]: { trim: { url: "" } } })
   }
-
 
   return (
     <>
@@ -40,7 +35,7 @@ export const TrimSelector = () => {
         icon={<TrimIcon size={OPTIONS_ICON_SIZE} />}
         armorPart="helmet"
         optionsData={HELMET_TRIM_OPTIONS_DATA}
-        onSelect={handleSelectArmorPart(("helmet"))}
+        onSelect={handleSelectTrimPart(("helmet"))}
         onRemove={handleRemoveTrimPart("helmet")}
       />
       <TrimOption
@@ -48,7 +43,7 @@ export const TrimSelector = () => {
         icon={<TrimIcon size={OPTIONS_ICON_SIZE} />}
         armorPart="chestplate"
         optionsData={CHESTPLATE_TRIM_OPTIONS_DATA}
-        onSelect={handleSelectArmorPart(("chestplate"))}
+        onSelect={handleSelectTrimPart(("chestplate"))}
         onRemove={handleRemoveTrimPart("chestplate")}
       />
       <TrimOption
@@ -56,7 +51,7 @@ export const TrimSelector = () => {
         icon={<TrimIcon size={OPTIONS_ICON_SIZE} />}
         armorPart="leggings"
         optionsData={LEGGINS_TRIM_OPTIONS_DATA}
-        onSelect={handleSelectArmorPart(("leggings"))}
+        onSelect={handleSelectTrimPart(("leggings"))}
         onRemove={handleRemoveTrimPart("leggings")}
       />
       <TrimOption
@@ -64,7 +59,7 @@ export const TrimSelector = () => {
         icon={<TrimIcon size={OPTIONS_ICON_SIZE} />}
         armorPart="boots"
         optionsData={BOOTS_TRIM_OPTIONS_DATA}
-        onSelect={handleSelectArmorPart(("boots"))}
+        onSelect={handleSelectTrimPart(("boots"))}
         onRemove={handleRemoveTrimPart("boots")}
       />
     </>

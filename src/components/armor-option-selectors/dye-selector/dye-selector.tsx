@@ -1,10 +1,10 @@
 "use client"
 
 import type { ArmorPartName } from "@/types"
-import { DYE_OPTIONS_DATA } from "@/constants/dye-options-data"
+import { type DyeOptionData, DYE_OPTIONS_DATA } from "@/constants/dye-options-data"
 import { createRecordFromKeys } from "@/helpers/create-record-from-keys"
 import { useArmorDataStore } from "@/store/use-armor-data-store"
-import { type DyeOptionData, DyeOption } from "./dye-option"
+import { DyeOption } from "./dye-option"
 
 export const DyeSelector = () => {
   const setArmorPartDye = useArmorDataStore(state => state.setArmorPartDye)
