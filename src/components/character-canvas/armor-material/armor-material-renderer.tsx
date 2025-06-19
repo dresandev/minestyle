@@ -1,9 +1,9 @@
-import type { ArmorPartData } from "@/types"
+import type { ArmorPartName } from "@/types"
 import { useArmorDataStore } from "@/store/use-armor-data-store"
 import { ArmorMaterial } from "./armor-material"
 
 interface Props {
-  partName: ArmorPartData["partName"]
+  partName: ArmorPartName
 }
 
 export const ArmorMaterialRenderer: React.FC<Props> = ({ partName }) => {

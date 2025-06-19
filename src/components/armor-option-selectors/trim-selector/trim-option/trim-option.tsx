@@ -5,6 +5,7 @@ import type { BasicArmorPartName } from "@/types"
 import type { TrimOptionData } from "@/constants/trim-options-data"
 import { OPTIONS_ICON_SIZE } from "@/constants/ui"
 import { useArmorItemsStore } from "@/store/use-armor-items-store"
+import { useArmorDataStore } from "@/store/use-armor-data-store"
 import { OptionPopover } from "@/components/popover-option"
 import { ItemImage } from "@/components/item-image"
 import { TextureButton } from "@/components/texture-button"
@@ -30,6 +31,7 @@ export const TrimOption: React.FC<Props> = ({
   const [isOpen, setIsOpen] = useState(false)
   const setArmorItems = useArmorItemsStore(state => state.setArmorItems)
   const trimItem = useArmorItemsStore(state => state[armorPart].trimItem)
+  const hasArmor = useArmorDataStore(state => state[armorPart].armor.hasArmor)
 
   const closePopover = () => setIsOpen(false)
 
@@ -60,6 +62,7 @@ export const TrimOption: React.FC<Props> = ({
       trigger={{
         label,
         icon: triggerIcon,
+        disabled: !hasArmor
       }}
       contentColumns={5}
     >
