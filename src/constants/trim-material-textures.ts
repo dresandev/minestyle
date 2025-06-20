@@ -27,5 +27,4 @@ const getTrimMaterialTexture = () => (
   }))
 )
 
-
 export const TRIM_MATERIAL_TEXTURES = getTrimMaterialTexture()

@@ -15,21 +15,29 @@ const COMMON_ARMOR_TYPES: Exclude<ArmorType, "turtle">[] = [
   "netherite"
 ]
 
-const HELMET_TYPES: ArmorType[] = [
-  ...COMMON_ARMOR_TYPES,
+const HELMET_EXTRA_TYPES: ArmorType[] = [
   "turtle"
 ]
 
-const getArmorLayerTexture = (data: ArmorType[], layer: TextureLayer,) => (
+const getArmorLayerTextures = (data: ArmorType[], layer: TextureLayer) => (
   data.map((name) => ({
     name,
     texturePath: getArmorTexturePath(name, layer)
   }))
 )
 
+export const COMMON_ARMOR_LAYER_1_TEXTURES = getArmorLayerTextures(COMMON_ARMOR_TYPES, "layer-1")
+export const COMMON_ARMOR_LAYER_2_TEXTURES = getArmorLayerTextures(COMMON_ARMOR_TYPES, "layer-2")
+export const HELMET_EXTRA_TEXTURES = getArmorLayerTextures(HELMET_EXTRA_TYPES, "layer-1")
+
+const HELMET_TEXTURES = [
+  ...COMMON_ARMOR_LAYER_1_TEXTURES,
+  ...HELMET_EXTRA_TEXTURES
+]
+
 export const ARMOR_TEXTURES: Record<BasicArmorPartName, TextureData<ArmorType>[]> = {
-  helmet: getArmorLayerTexture(HELMET_TYPES, "layer-1"),
-  chestplate: getArmorLayerTexture(COMMON_ARMOR_TYPES, "layer-1"),
-  leggings: getArmorLayerTexture(COMMON_ARMOR_TYPES, "layer-2"),
-  boots: getArmorLayerTexture(COMMON_ARMOR_TYPES, "layer-1")
+  helmet: HELMET_TEXTURES,
+  chestplate: COMMON_ARMOR_LAYER_1_TEXTURES,
+  leggings: COMMON_ARMOR_LAYER_2_TEXTURES,
+  boots: COMMON_ARMOR_LAYER_1_TEXTURES,
 }

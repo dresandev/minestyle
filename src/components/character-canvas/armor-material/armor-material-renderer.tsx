@@ -1,3 +1,4 @@
+import { Suspense } from "react"
 import type { ArmorPartName } from "@/types"
 import { useArmorDataStore } from "@/store/use-armor-data-store"
 import { ArmorMaterial } from "./armor-material"
@@ -17,11 +18,13 @@ export const ArmorMaterialRenderer: React.FC<Props> = ({ partName }) => {
   const color = isLeather ? dye : undefined
 
   return (
-    <ArmorMaterial
-      armorUrl={armorUrl}
-      trimUrl={trimUrl}
-      trimMaterialUrl={trimMaterialUrl}
-      armorDye={color}
-    />
+    <Suspense>
+      <ArmorMaterial
+        armorUrl={armorUrl}
+        trimUrl={trimUrl}
+        trimMaterialUrl={trimMaterialUrl}
+        armorDye={color}
+      />
+    </Suspense>
   )
 }

@@ -15,3 +15,5 @@ export const DEFAULT_CAPE = `${BASE_TEXTURE_PATH}/capes/default.png`
 export const DEFAULT_DYE_ITEM = `${BASE_DYE_ITEM_PATH}/brown.png`
 export const DEFAULT_MATERIAL_ITEM = `${BASE_TRIM_MATERIAL_ITEM_PATH}/amethyst-shard.png`
 export const DEFAULT_TRIM_MATERIAL_TEXTURE = `${BASE_TRIM_MATERIAL_TEXTURE_PATH}/amethyst-shard.png`
+
+export const TRANSPARENT_TEXTURE_PATH = "/images/textures/transparent.png"

@@ -1,13 +1,15 @@
 import { CHARACTER_CONTAINER_ID } from "@/constants/dom-selectors"
+import { PreloadTextures } from "@/components/preload-textures"
+import { CharacterTabs } from "@/components/character-tabs"
 import { CharacterCanvas } from "@/components/character-canvas"
 import { LoadingScreen } from "@/components/loading-screen"
 import { PanoramaCanvas } from "@/components/panorama-canvas"
-import { CharacterTabs } from "@/components/character-tabs"
 import styles from "./page.module.css"
 
 export default function HomePage() {
   return (
     <>
+      <PreloadTextures />
       <main className={styles.main}>
         <div
           id={CHARACTER_CONTAINER_ID}

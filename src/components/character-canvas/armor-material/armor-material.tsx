@@ -4,7 +4,8 @@ import {
   DoubleSide,
   WebGLProgramParametersWithUniforms,
 } from "three"
-import { loadMcTexture } from "@/helpers/load-mc-texture"
+import { useMcTexture } from "@/hooks/use-mc-texture"
+import { TRANSPARENT_TEXTURE_PATH } from "@/constants/image-paths"
 
 interface Props {
   armorUrl: string
@@ -21,9 +22,9 @@ export const ArmorMaterial: React.FC<Props> = ({
 }) => {
   const shaderRef = useRef<WebGLProgramParametersWithUniforms>(null)
 
-  const armorTexture = loadMcTexture(armorUrl)
-  const trimTexture = loadMcTexture(trimUrl)
-  const trimMaterialTexture = loadMcTexture(trimMaterialUrl)
+  const armorTexture = useMcTexture(armorUrl)
+  const trimTexture = useMcTexture(trimUrl || TRANSPARENT_TEXTURE_PATH)
+  const trimMaterialTexture = useMcTexture(trimMaterialUrl || TRANSPARENT_TEXTURE_PATH)
 
   const { r, g, b } = new Color(armorDye)
 
@@ -36,8 +37,8 @@ export const ArmorMaterial: React.FC<Props> = ({
     uniforms.armorDye.value = [r, g, b]
     uniforms.trimTexture.value = trimTexture
     uniforms.materialTexture.value = trimMaterialTexture
-    uniforms.hasTrim.value = !!(trimTexture && trimMaterialTexture)
-  }, [armorTexture, trimTexture, trimMaterialTexture, r, g, b])
+    uniforms.hasTrim.value = !!trimUrl
+  }, [armorTexture, trimTexture, trimMaterialTexture, r, g, b, trimUrl])
 
   const onBeforeCompile = (shader: WebGLProgramParametersWithUniforms) => {
     shaderRef.current = shader
@@ -46,7 +47,7 @@ export const ArmorMaterial: React.FC<Props> = ({
     shader.uniforms.armorDye = { value: [r, g, b] }
     shader.uniforms.trimTexture = { value: trimTexture }
     shader.uniforms.materialTexture = { value: trimMaterialTexture }
-    shader.uniforms.hasTrim = { value: !!(trimTexture && trimMaterialTexture) }
+    shader.uniforms.hasTrim = { value: !!trimUrl }
 
     shader.vertexShader = shader.vertexShader.replace(
       "#include <common>",
@@ -74,24 +75,24 @@ export const ArmorMaterial: React.FC<Props> = ({
     shader.fragmentShader = shader.fragmentShader.replace(
       "#include <color_fragment>",
       `#include <color_fragment>
-       vec4 baseColor = texture2D(armorTexture, vUv);
-       vec3 colorizedArmorRgb = baseColor.rgb * armorDye;
 
-       if (hasTrim) {
-         vec4 trimColor = texture2D(trimTexture, vUv);
-         if (trimColor.a > 0.01) {
-           float rawIndex = floor(trimColor.r * 10.0);
-           float index = 7.0 - rawIndex;
-           float u = index / 8.0;
-           vec4 materialColor = texture2D(materialTexture, vec2(u, 0.5));
-           vec3 finalRgb = mix(colorizedArmorRgb, materialColor.rgb, trimColor.a);
-           diffuseColor = vec4(finalRgb, 1.0);
-         } else {
-           diffuseColor = vec4(colorizedArmorRgb, baseColor.a);
-         }
-       } else {
-         diffuseColor = vec4(colorizedArmorRgb, baseColor.a);
-       }`
+      vec4 baseColor = texture2D(armorTexture, vUv);
+      vec3 colorizedArmorRgb = baseColor.rgb * armorDye;
+
+      vec3 finalColor = colorizedArmorRgb;
+
+      if (hasTrim) {
+        vec4 trimSample = texture2D(trimTexture, vUv);
+
+        float rawIndex = floor(trimSample.r * 10.0);
+        float index = 7.0 - rawIndex;
+        float u = index / 8.0;
+        vec4 materialSample = texture2D(materialTexture, vec2(u, 0.5));
+
+        finalColor = mix(colorizedArmorRgb, materialSample.rgb, trimSample.a);
+      }
+
+      diffuseColor = vec4(finalColor, baseColor.a);`
     )
   }
 

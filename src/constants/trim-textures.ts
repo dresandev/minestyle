@@ -34,8 +34,8 @@ const getTrimLayerTexture = (layer: TextureLayer) => (
   }))
 )
 
-const TRIM_LAYER_1_TEXTURES = getTrimLayerTexture("layer-1")
-const TRIM_LAYER_2_TEXTURES = getTrimLayerTexture("layer-2")
+export const TRIM_LAYER_1_TEXTURES = getTrimLayerTexture("layer-1")
+export const TRIM_LAYER_2_TEXTURES = getTrimLayerTexture("layer-2")
 
 export const TRIM_TEXTURES: Record<BasicArmorPartName, TextureData<TrimName>[]> = {
   helmet: TRIM_LAYER_1_TEXTURES,
