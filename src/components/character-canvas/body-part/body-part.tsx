@@ -14,7 +14,7 @@ export const BodyPart: React.FC<Props> = ({ data }) => {
     skin,
     isSlim,
     hasOuterLayer,
-  } = useSkinDataStore()
+  } = useSkinDataStore(state => state)
 
   const {
     name,

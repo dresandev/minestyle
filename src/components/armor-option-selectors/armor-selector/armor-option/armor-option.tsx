@@ -21,9 +21,9 @@ interface ExtraOption {
 
 interface Props {
   label: string
+  icon: React.ReactNode
   armorPart: BasicArmorPartName
   optionsData: ArmorOptionData[]
-  icon: React.ReactNode
   onSelect: (data: ArmorOptionData) => void
   onRemove: () => void
   extraOption?: ExtraOption
@@ -31,9 +31,9 @@ interface Props {
 
 export const ArmorOption = ({
   label,
+  icon,
   armorPart,
   optionsData,
-  icon,
   onSelect,
   onRemove,
   extraOption,
@@ -99,7 +99,7 @@ export const ArmorOption = ({
       onOpenChange={setIsOpen}
       trigger={{
         label,
-        icon: triggerIcon
+        icon: triggerIcon,
       }}
     >
       <TextureButton

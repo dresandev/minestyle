@@ -13,6 +13,7 @@ export const ItemImage: React.FC<Props> = ({
 }) => {
   return (
     <img
+      draggable={false}
       className={styles.image}
       alt={alt}
       src={src}

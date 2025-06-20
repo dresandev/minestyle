@@ -62,7 +62,7 @@ export const TrimOption: React.FC<Props> = ({
       trigger={{
         label,
         icon: triggerIcon,
-        disabled: !hasArmor
+        disabled: !hasArmor,
       }}
       contentColumns={5}
     >

@@ -51,7 +51,7 @@ export const DyeOption: React.FC<Props> = ({
       trigger={{
         label,
         icon,
-        disabled: !isLeather
+        disabled: !isLeather,
       }}
       contentColumns={5}
     >

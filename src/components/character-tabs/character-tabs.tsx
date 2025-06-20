@@ -12,6 +12,7 @@ import { ArmorSelector } from "@/components/armor-option-selectors/armor-selecto
 import { DyeSelector } from "@/components/armor-option-selectors/dye-selector"
 import { TrimMaterialSelector } from "@/components/armor-option-selectors/trim-material-selector"
 import { TrimSelector } from "@/components/armor-option-selectors/trim-selector"
+import { SkinInput } from "@/components/skin-input"
 import styles from "./character-tabs.module.css"
 
 export const CharacterTabs = () => {
@@ -76,7 +77,7 @@ export const CharacterTabs = () => {
         </div>
       </TabsContent>
       <TabsContent value="skin">
-        <div>asd</div>
+        <SkinInput />
       </TabsContent>
       <TabsContent value="cape">
         <div>asdda</div>

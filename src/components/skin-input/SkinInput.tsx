@@ -6,6 +6,7 @@ import { getSkinData } from "@/helpers/get-skin-data"
 import { toast } from "@/helpers/toast"
 import { useSkinDataStore } from "@/store/use-skin-data-store"
 import { validateFile } from "./validations"
+import { DEFAULT_SKIN } from "@/constants/image-paths"
 
 export const SkinInput = () => {
   const inputRef = useRef<HTMLInputElement>(null)
@@ -29,10 +30,11 @@ export const SkinInput = () => {
       image.onload = async () => {
         try {
           const { width, height } = image
-          const isSquare = width === height
+          const isValidWidth = width === 64
+          const isValidHeight = height === 64 || height === 32
           const isOldFormat = width === 2 * height
 
-          if (!isSquare && !isOldFormat) {
+          if (!isValidWidth || !isValidHeight && !isOldFormat) {
             throw new Error(`Invalid skin dimensions: ${width}x${height}`)
           }
 
@@ -55,7 +57,10 @@ export const SkinInput = () => {
 
           const skinData = getSkinData(finalImage)
 
-          setSkinData({ skin: finalBase64, ...skinData })
+          setSkinData({
+            skin: finalBase64,
+            ...skinData
+          })
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
           toast({
