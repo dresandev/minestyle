@@ -3,7 +3,7 @@ import { immer } from "zustand/middleware/immer"
 import type { BodyPartName } from "@/types"
 import { DEFAULT_SKIN } from "@/constants/image-paths"
 
-interface SkinData {
+export interface SkinData {
   skin: string
   isSlim: boolean
   hasOuterLayer: Record<BodyPartName, boolean>

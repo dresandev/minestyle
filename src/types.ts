@@ -104,3 +104,8 @@ export interface ArmorPartData {
   boxData: BoxData
   partName: ArmorPartName
 }
+
+export interface Validation {
+  validation: (file: File) => boolean
+  message: string
+}

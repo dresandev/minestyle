@@ -1,3 +1,4 @@
+import clsx from "clsx"
 import {
   Tabs,
   TabsList,
@@ -13,6 +14,7 @@ import { DyeSelector } from "@/components/armor-option-selectors/dye-selector"
 import { TrimMaterialSelector } from "@/components/armor-option-selectors/trim-material-selector"
 import { TrimSelector } from "@/components/armor-option-selectors/trim-selector"
 import { SkinInput } from "@/components/skin-input"
+import { CapeInput } from "@/components/cape-input"
 import styles from "./character-tabs.module.css"
 
 export const CharacterTabs = () => {
@@ -69,7 +71,7 @@ export const CharacterTabs = () => {
       </TabsList>
 
       <TabsContent value="armor">
-        <div className={styles.tabsContent}>
+        <div className={clsx(styles.tabsContent, styles.gridContent)}>
           <ArmorSelector />
           <DyeSelector />
           <TrimSelector />
@@ -77,10 +79,14 @@ export const CharacterTabs = () => {
         </div>
       </TabsContent>
       <TabsContent value="skin">
-        <SkinInput />
+        <div className={styles.tabsContent}>
+          <SkinInput />
+        </div>
       </TabsContent>
       <TabsContent value="cape">
-        <div>asdda</div>
+        <div className={styles.tabsContent}>
+          <CapeInput />
+        </div>
       </TabsContent>
     </Tabs >
   )

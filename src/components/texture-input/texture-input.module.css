@@ -1,0 +1,25 @@
+.input {
+  --size: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--size);
+  block-size: var(--size);
+  border: 2px solid hsl(0 0% 100% / 0.15);
+  box-shadow: 0 0 0 2px hsl(0 0 0 / 0.15);
+  border-radius: 4px;
+  transition: border-color 250ms;
+}
+
+.input:hover {
+  border-color: hsl(0 0% 100% / 0.3);
+}
+
+.input > input {
+  display: none;
+}
+
+.label {
+  font-size: 12px;
+  text-align: center;
+}

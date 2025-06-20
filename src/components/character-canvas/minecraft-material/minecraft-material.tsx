@@ -8,7 +8,7 @@ interface Props {
   color?: string
 }
 
-export const Material: React.FC<Props> = ({
+export const MinecraftMaterial: React.FC<Props> = ({
   textureUrl,
   transparent,
   alphaTest,

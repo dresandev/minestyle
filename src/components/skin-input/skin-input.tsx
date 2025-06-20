@@ -1,28 +1,31 @@
 "use client"
 
-import { useRef } from "react"
 import { convertSkinTo1_8 } from "@/utils/convert-skin-to-1_8"
-import { getSkinData } from "@/helpers/get-skin-data"
-import { toast } from "@/helpers/toast"
 import { useSkinDataStore } from "@/store/use-skin-data-store"
-import { validateFile } from "./validations"
-import { DEFAULT_SKIN } from "@/constants/image-paths"
+import { getSkinData } from "@/helpers/get-skin-data"
+import { validateTextureFile } from "@/helpers/validate-texture-file"
+import { toast } from "@/helpers/toast"
+import { TextureInput } from "@/components/texture-input"
+import { validations } from "./validations"
 
 export const SkinInput = () => {
-  const inputRef = useRef<HTMLInputElement>(null)
   const setSkinData = useSkinDataStore(state => state.setSkinData)
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     if (!file) return
 
-    const isValidFile = validateFile(file)
+    const { isValid, message } = validateTextureFile(file, validations)
 
-    if (!isValidFile) {
-      return clearInput()
+    if (!isValid) {
+      return toast({
+        title: "Invalid file format",
+        description: message
+      })
     }
 
     const reader = new FileReader()
+
     reader.onload = async (e) => {
       const base64 = e.target?.result as string
       const image = new Image()
@@ -67,8 +70,6 @@ export const SkinInput = () => {
             title: "Loading Error",
             description: err.message || "An error occurred while loading the skin."
           })
-        } finally {
-          clearInput()
         }
       }
 
@@ -78,17 +79,10 @@ export const SkinInput = () => {
     reader.readAsDataURL(file)
   }
 
-  const clearInput = () => {
-    if (!inputRef.current) return
-    inputRef.current.value = ""
-  }
-
   return (
-    <input
-      ref={inputRef}
-      type="file"
-      accept="image/png"
-      onChange={handleFileChange}
+    <TextureInput
+      label="Upload Skin"
+      onChange={handleOnChange}
     />
   )
 }

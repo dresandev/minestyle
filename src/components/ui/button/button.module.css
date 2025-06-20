@@ -14,7 +14,6 @@
 .button.square {
   inline-size: var(--square-size);
   block-size: var(--square-size);
-  aspect-ratio: 1;
 }
 
 .button.primary {

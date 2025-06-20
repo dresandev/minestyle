@@ -1,1 +1,1 @@
-export * from "./SkinInput"
+export * from "./skin-input"

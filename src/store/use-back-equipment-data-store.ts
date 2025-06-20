@@ -15,7 +15,7 @@ interface State {
 
 interface Actions {
   setBackEquipment: (
-    data: Record<BackEquipmentPart, BackEquipmentData>
+    data: Partial<Record<BackEquipmentPart, BackEquipmentData>>
   ) => void
 }
 

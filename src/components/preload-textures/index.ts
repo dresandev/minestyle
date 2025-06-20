@@ -1,1 +1,1 @@
-export * from './preload-textures';
+export * from "./preload-textures"
