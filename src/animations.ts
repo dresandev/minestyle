@@ -1,4 +1,10 @@
-import { AnimationFn, BodyPartName, Model3DRefs, Model3DRef, ElytraPartName } from "@/types"
+import type {
+  AnimationFn,
+  BodyPartName,
+  Model3DRefs,
+  Model3DRef,
+  ElytraPartName,
+} from "@/types"
 
 interface AnimationProps {
   bodyRef: Model3DRef
