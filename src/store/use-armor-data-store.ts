@@ -43,7 +43,7 @@ export interface Actions {
   setArmorPartDye: (data: Partial<Record<ArmorPartName, string>>) => void
 }
 
-const INIT_STATE = {
+const INIT_STATE: State = {
   helmet: {
     isVisible: false,
     armor: {

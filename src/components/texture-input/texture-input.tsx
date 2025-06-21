@@ -14,7 +14,7 @@ export const TextureInput: React.FC<Props> = ({
   onChange,
 }) => {
   return (
-    <div>
+    <div className={styles.wrapper}>
       <label className={styles.input}>
         <PlusIcon size={36} />
         <input

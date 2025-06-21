@@ -1,0 +1,26 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 2px;
+  background-color: hsl(0 0% 100% / 0.15);
+  box-shadow: 0 0 0 2px hsl(0 0 0 / 0.15);
+}
+
+.button {
+  position: relative;
+  z-index: 10;
+  block-size: 48px;
+  min-inline-size: 240px;
+  background-size: cover;
+  font-size: 14px;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-color: hsl(0 0% 0% / 0.3);
+  backdrop-filter: blur(3px);
+}

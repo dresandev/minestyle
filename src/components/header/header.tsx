@@ -1,6 +1,7 @@
-import { MusicButton } from "@/components/music-button"
-import { UserIcon } from "@/components/icons/user-icon"
 import { Button } from "@/components/ui/button"
+import { UserIcon } from "@/components/icons/user-icon"
+import { MusicButton } from "@/components/music-button"
+import { ThemeChanger } from "@/components/theme-changer"
 import styles from "./header.module.css"
 
 export const Header = () => {
@@ -13,7 +14,11 @@ export const Header = () => {
       >
         <UserIcon />
       </Button>
-      <MusicButton />
+
+      <div className={styles.options}>
+        <ThemeChanger />
+        <MusicButton />
+      </div>
     </header>
   )
 }

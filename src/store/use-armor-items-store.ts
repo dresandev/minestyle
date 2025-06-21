@@ -9,13 +9,13 @@ interface ArmorItems {
   materialItem?: string
 }
 
-type State = Record<BasicArmorPartName, ArmorItems>
+type State = Record<BasicArmorPartName | "set", ArmorItems>
 
 interface Actions {
   setArmorItems: (data: Partial<State>) => void
 }
 
-const INIT_STATE = {
+const INIT_STATE: State = {
   set: {
     armorItem: "",
     dyeItem: DEFAULT_DYE_ITEM,

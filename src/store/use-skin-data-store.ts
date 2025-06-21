@@ -15,7 +15,7 @@ type Actions = {
   setSkinData: (data: SkinData) => void
 }
 
-const INIT_STATE: SkinData = {
+const INIT_STATE: State = {
   skin: DEFAULT_SKIN,
   isSlim: true,
   hasOuterLayer: {

@@ -1,5 +1,10 @@
-.input {
+.wrapper {
   --size: 64px;
+  position: relative;
+  block-size: calc(var(--size) + 1lh);
+}
+
+.input {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,6 +25,10 @@
 }
 
 .label {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
   font-size: 12px;
-  text-align: center;
+  text-wrap: nowrap;
 }

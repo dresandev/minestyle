@@ -4,6 +4,7 @@ import { Canvas } from "@react-three/fiber"
 import { PerspectiveCamera } from "@react-three/drei"
 import { BrightnessContrast, EffectComposer, } from "@react-three/postprocessing"
 import type { BoxSidesImage } from "@/types"
+import { useThemeStore } from "@/store/use-theme-store"
 import { useDisableZoom } from "@/hooks/use-disable-zoom"
 import { useMobile } from "@/hooks/use-mobile"
 import { SkyBox } from "@/components/sky-box"
@@ -12,16 +13,16 @@ import styles from "./panorama-canvas.module.css"
 export const PanoramaCanvas = () => {
   useDisableZoom()
   const isMobile = useMobile()
+  const theme = useThemeStore(state => state.theme)
   const dynamicFolder = isMobile ? "mobile" : "desktop"
-  const panoramaName = "simply-vanilla-spawn"
 
   const images: BoxSidesImage = [
-    `/images/panoramas/${panoramaName}/${dynamicFolder}/right.webp`,
-    `/images/panoramas/${panoramaName}/${dynamicFolder}/left.webp`,
-    `/images/panoramas/${panoramaName}/${dynamicFolder}/top.webp`,
-    `/images/panoramas/${panoramaName}/${dynamicFolder}/bottom.webp`,
-    `/images/panoramas/${panoramaName}/${dynamicFolder}/front.webp`,
-    `/images/panoramas/${panoramaName}/${dynamicFolder}/back.webp`,
+    `/images/panoramas/${theme}/${dynamicFolder}/right.webp`,
+    `/images/panoramas/${theme}/${dynamicFolder}/left.webp`,
+    `/images/panoramas/${theme}/${dynamicFolder}/top.webp`,
+    `/images/panoramas/${theme}/${dynamicFolder}/bottom.webp`,
+    `/images/panoramas/${theme}/${dynamicFolder}/front.webp`,
+    `/images/panoramas/${theme}/${dynamicFolder}/back.webp`,
   ]
 
   return (

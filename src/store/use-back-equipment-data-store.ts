@@ -19,7 +19,7 @@ interface Actions {
   ) => void
 }
 
-const INIT_STATE = {
+const INIT_STATE: State = {
   cape: {
     isVisible: true,
     url: DEFAULT_CAPE,

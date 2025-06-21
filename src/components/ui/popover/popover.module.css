@@ -1,7 +1,4 @@
 .content {
-  background-color: hsla(188, 22%, 7%, 0.8);
-  backdrop-filter: blur(8px);
-  padding: 12px;
   border-radius: 4px;
   animation-duration: 350ms;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);

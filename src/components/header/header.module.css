@@ -5,10 +5,14 @@
   padding: var(--padding-inline);
 }
 
+.options {
+  display: flex;
+  gap: 12px;
+}
+
 @media screen and (min-width: 768px) {
   .header {
     position: fixed;
-    z-index: 10;
     inset-inline: 0;
   }
 }

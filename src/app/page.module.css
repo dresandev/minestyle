@@ -1,7 +1,6 @@
 .main {
   padding-inline: var(--padding-inline);
   padding-block-end: 60px;
-  isolation: isolate;
 }
 
 .wrapper {

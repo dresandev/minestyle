@@ -21,6 +21,12 @@ export type BoxSidesImage = [
 export type Icon = { size?: number } & React.SVGProps<SVGSVGElement>
 export type TextureLayer = "layer-1" | "layer-2"
 
+export type Theme =
+  | "caves-and-cliffs"
+  | "nether"
+  | "vanilla-spawn"
+  | "vanilla-spawn-winter"
+
 export interface TextureData<TName = string> {
   name: TName
   texturePath: string

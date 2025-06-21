@@ -1,9 +1,10 @@
 :root {
-  --header-block-size: 60px;
-  --padding-inline: 18px;
   --background-color: hsl(216 16% 6%);
   --text-color: hsl(0 0% 93%);
   --outline-color: hsl(204 100% 60%);
+
+  --header-block-size: 76px;
+  --padding-inline: 18px;
 }
 
 body {
