@@ -1,0 +1,48 @@
+@font-face {
+  font-family: "Minecraft";
+  src: url("/fonts/Minecraft.woff") format("woff");
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-block-size: 100dvh;
+  font-family: "Minecraft";
+  text-shadow: 4px 4px 2px hsl(0 0% 0% / 0.6);
+}
+
+.title {
+  text-align: center;
+  font-size: 62px;
+}
+
+.homeLink {
+  position: relative;
+  display: block;
+  max-width: fit-content;
+  block-size: 50px;
+  margin-inline: auto;
+  padding-block-start: 8px;
+  font-size: 24px;
+  line-height: normal;
+}
+
+.homeLink::before {
+  content: "";
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline: 0;
+  block-size: 2px;
+  background-color: currentColor;
+  box-shadow: 4px 4px 2px hsl(0 0% 0% / 0.6);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 250ms;
+}
+
+.homeLink:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}

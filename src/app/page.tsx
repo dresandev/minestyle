@@ -2,8 +2,6 @@ import { CHARACTER_CONTAINER_ID } from "@/constants/dom-selectors"
 import { PreloadTextures } from "@/components/preload-textures"
 import { CharacterTabs } from "@/components/character-tabs"
 import { CharacterCanvas } from "@/components/character-canvas"
-import { LoadingScreen } from "@/components/loading-screen"
-import { PanoramaCanvas } from "@/components/panorama-canvas"
 import styles from "./page.module.css"
 
 export default function HomePage() {
@@ -22,8 +20,6 @@ export default function HomePage() {
           </div>
         </div>
       </main>
-      <LoadingScreen />
-      <PanoramaCanvas />
     </>
   )
 }
