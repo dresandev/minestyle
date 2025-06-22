@@ -13,3 +13,4 @@ App to view your Minecraft skin with armor and armor trims, focused on great loo
 * Add enchant armor effect
 * Add leather armor overlay (helmet and leggings)
 * Add set options button
+* Add elytras default skin option
