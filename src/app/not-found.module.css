@@ -8,14 +8,15 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  min-block-size: 100dvh;
+  min-block-size: calc(100dvh - var(--header-block-size));
   font-family: "Minecraft";
-  text-shadow: 4px 4px 2px hsl(0 0% 0% / 0.6);
+  color: aliceblue;
 }
 
 .title {
   text-align: center;
   font-size: 62px;
+  text-shadow: 5px 5px 0 hsl(0 0% 0% / 0.6);
 }
 
 .homeLink {
@@ -27,6 +28,7 @@
   padding-block-start: 8px;
   font-size: 24px;
   line-height: normal;
+  text-shadow: 3px 3px 0 hsl(0 0% 0% / 0.6);
 }
 
 .homeLink::before {
@@ -36,7 +38,7 @@
   inset-inline: 0;
   block-size: 2px;
   background-color: currentColor;
-  box-shadow: 4px 4px 2px hsl(0 0% 0% / 0.6);
+  box-shadow: 3px 3px 0 hsl(0 0% 0% / 0.6);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 250ms;
@@ -45,4 +47,10 @@
 .homeLink:hover::before {
   transform: scaleX(1);
   transform-origin: left;
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    min-block-size: 100dvh;
+  }
 }
