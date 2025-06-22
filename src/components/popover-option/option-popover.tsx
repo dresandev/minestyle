@@ -1,4 +1,4 @@
-import { CSSProperties, PropsWithChildren } from "react"
+import { type CSSProperties, PropsWithChildren } from "react"
 import type { ButtonProps } from "@/components/ui/button"
 import { Popover, PopoverContent } from "@/components/ui/popover"
 import { TextureButton } from "@/components/texture-button"
@@ -33,6 +33,7 @@ export const OptionPopover: React.FC<Props> = ({
       <TextureButton
         className={styles.button}
         label={label}
+        aria-label={label}
         asPopoverTrigger
         {...buttonProps}
       >

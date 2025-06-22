@@ -1,3 +1,4 @@
+import Image from "next/image"
 import styles from "./item-image.module.css"
 
 interface Props {
@@ -12,13 +13,16 @@ export const ItemImage: React.FC<Props> = ({
   size,
 }) => {
   return (
-    <img
-      draggable={false}
+    <Image
       className={styles.image}
       alt={alt}
       src={src}
       width={size}
       height={size}
+      unoptimized
+      loading="eager"
+      decoding="sync"
+      draggable={false}
     />
   )
 }
