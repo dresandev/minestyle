@@ -29,7 +29,7 @@ export const MinecraftModels = () => {
       position={[0, 7.5, 0]}
     >
       <CharacterModel partRefs={bodyPartRefs} />
-      <CapeModel />
+      <CapeModel ref={capeRef} />
       <ElytraModel />
     </group>
   )
