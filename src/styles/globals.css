@@ -11,10 +11,21 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   min-block-size: 100dvh;
+  animation: unlock-scroll 3.2s steps(1);
 }
 
 :focus-visible {
   outline: 2px solid var(--outline-color);
   outline-offset: 2px;
   border-radius: 5px;
+}
+
+@keyframes unlock-scroll {
+  from {
+    overflow-y: hidden;
+  }
+
+  to {
+    overflow-y: auto;
+  }
 }
