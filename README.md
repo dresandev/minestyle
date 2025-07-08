@@ -6,6 +6,29 @@ App to view your Minecraft skin with armor and armor trims, focused on great loo
 
 ![image](https://github.com/user-attachments/assets/f707ab87-cfbf-40d7-8fc0-6a453618e1ac)
 
+## Run development server
+
+Run the following commands in the terminal
+
+```bash
+  cd minestyle
+  # Or the name you gave the project when cloning the repository
+
+  # Install dependencies
+  npm install
+  # or
+  pnpm install
+  # or
+  yarn install
+
+  # Run dev server
+  npm dev
+  # or
+  pnpm dev
+  # or
+  yarn dev
+```
+
 ## Backlog
 
 * Save app state in local storage
