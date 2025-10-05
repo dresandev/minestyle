@@ -54,11 +54,12 @@ export type BasicArmorPartName =
 export type ArmorPartName = BasicArmorPartName | "innerChestplate"
 
 export type ArmorType =
-  | "chainmail"
-  | "diamond"
-  | "gold"
-  | "iron"
   | "leather"
+  | "gold"
+  | "chainmail"
+  | "copper"
+  | "iron"
+  | "diamond"
   | "netherite"
   | "turtle"
 

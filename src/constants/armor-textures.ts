@@ -10,12 +10,13 @@ const COMMON_ARMOR_TYPES: Exclude<ArmorType, "turtle">[] = [
   "leather",
   "gold",
   "chainmail",
+  "copper",
   "iron",
   "diamond",
   "netherite"
 ]
 
-const HELMET_EXTRA_TYPES: ArmorType[] = [
+const HELMET_EXTRA_TYPES: Extract<ArmorType, "turtle">[] = [
   "turtle"
 ]
 
