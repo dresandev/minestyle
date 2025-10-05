@@ -4,7 +4,7 @@ App to view your Minecraft skin with armor and armor trims, focused on great loo
 
 ## Screenshots
 
-![image](https://github.com/user-attachments/assets/f707ab87-cfbf-40d7-8fc0-6a453618e1ac)
+<img width="1878" height="984" alt="image" src="https://github.com/user-attachments/assets/05a60808-8d5e-4aee-9251-14fac75c02e0" />
 
 ## Run development server
 
