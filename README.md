@@ -37,4 +37,5 @@ Run the following commands in the terminal
 * Add leather armor overlay (helmet and leggings)
 * Add set options button
 * Add elytras default skin option
+* Add screenshot button
 * Load skins by username
