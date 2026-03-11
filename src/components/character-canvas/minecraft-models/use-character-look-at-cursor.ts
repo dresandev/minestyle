@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react"
+import { Group, MathUtils } from "three"
 import { CHARACTER_CONTAINER_ID } from "@/constants/dom-selectors"
 import { isTouchDevice } from "@/utils/is-touch-device"
-import { Group, MathUtils } from "three"
 import { useFrame } from "@react-three/fiber"
 
 interface Props {

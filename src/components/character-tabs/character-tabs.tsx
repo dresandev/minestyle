@@ -39,7 +39,6 @@ export const CharacterTabs = () => {
             <ArmorIcon size={42} />
           </Button>
         </TabsTrigger>
-
         <TabsTrigger
           value="skin"
           asChild
